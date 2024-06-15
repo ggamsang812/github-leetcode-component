@@ -6,6 +6,14 @@
 To publish your package, you just need to run ```npm publish```. If you want to release your package to the public, you have to set ```private: false``` in your ```package.json```.
 
 
+## Useful articles / documentations I read for this project
+- Guide on setting up the proxy in vite: 
+  - https://vitejs.dev/guide/ssr.html#ssr-externals
+  - https://dev.to/ghacosta/til-setting-up-proxy-server-on-vite-2cng
+- Difference between API vs. Endpoints https://dev.to/msnmongare/understanding-the-difference-between-apis-and-endpoints-402a
+- Data fetching guide for Next.js: https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
+
+
 ## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

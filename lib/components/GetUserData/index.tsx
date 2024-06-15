@@ -1,19 +1,39 @@
+import { useState, useEffect } from 'react';
 import { GetUserDataProps } from "./GetUserData.types";
 
-export function GetUserData(props: GetUserDataProps) {
+export function GetUserData({ username }: GetUserDataProps) {
+  const [contributions, setContributions] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchContributions() {
+      try {
+        const response = await fetch(`/api/users/${username}/contributions`);
+        const text = await response.text();
+        setContributions(text);
+      } catch (err) {
+        setError('Failed to fetch contributions');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchContributions();
+  }, [username]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div>
-      <h2>Contributions for {props.username}</h2>
+      <h2>Contributions for {username}</h2>
+      <div dangerouslySetInnerHTML={{ __html: contributions || '' }} />
     </div>
   );
 }
-
-// const getUserData: React.FC<getUserDataProps> = (props) => {
-//     return (
-//         <div>
-//           <h2>Contributions for {props.userName}</h2>
-//         </div>
-//       );
-// }
-
-// export default getUserData;

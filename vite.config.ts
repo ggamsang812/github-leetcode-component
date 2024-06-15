@@ -9,6 +9,15 @@ import { libInjectCss } from "vite-plugin-lib-inject-css";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), dts({ include: ["lib"] }), libInjectCss()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://github.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   build: {
     lib: {
       // add filename field here to change the output file from npm run build
