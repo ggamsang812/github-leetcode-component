@@ -1,4 +1,12 @@
-# React + TypeScript + Vite
+## Initialized the project from this article: 
+- https://dev.to/receter/how-to-create-a-react-component-library-using-vites-library-mode-4lma
+- Thank you @[receter](https://github.com/receter)
+
+## To publish package
+To publish your package, you just need to run ```npm publish```. If you want to release your package to the public, you have to set ```private: false``` in your ```package.json```.
+
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
