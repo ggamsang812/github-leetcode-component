@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button, Input, GetUserData } from '../';
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { Button, GitHubUserData, GetGitHubData } from "../";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [inputCustomCountValue, setInputCustomCountValue] = useState('');
+  const [count, setCount] = useState(0);
+  const [inputCustomCountValue, setInputCustomCountValue] = useState("");
 
   const handleClickCustomCount = () => {
-    if (inputCustomCountValue === '') {
-      setCount(count => count + 1);
+    if (inputCustomCountValue === "") {
+      setCount((count) => count + 1);
     } else {
       setCount(Number(inputCustomCountValue));
     }
-  }
+  };
 
   return (
     <>
@@ -28,15 +28,15 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <GetUserData username = "ggamsang812"/>
-        <Input
+        <GetGitHubData username="ggamsang812" />
+        <GitHubUserData username="ggamsang812" />
+        <input
           placeholder="Custom count"
           value={inputCustomCountValue}
           onChange={(e) => setInputCustomCountValue(e.target.value)}
-        /><br />
-        <Button onClick={handleClickCustomCount}>
-          count is {count}
-        </Button>
+        />
+        <br />
+        <Button onClick={handleClickCustomCount}>count is {count}</Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -45,7 +45,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

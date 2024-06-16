@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { GetUserDataProps } from "./GetUserData.types";
+import { useState, useEffect } from "react";
+import { GitHubUserDataProps } from "./GitHubUserData.types";
 
-export function GetUserData({ username }: GetUserDataProps) {
+export function GitHubUserData({ username }: GitHubUserDataProps) {
   const [contributions, setContributions] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -13,7 +13,7 @@ export function GetUserData({ username }: GetUserDataProps) {
         const text = await response.text();
         setContributions(text);
       } catch (err) {
-        setError('Failed to fetch contributions');
+        setError("Failed to fetch contributions");
       } finally {
         setLoading(false);
       }
@@ -33,7 +33,7 @@ export function GetUserData({ username }: GetUserDataProps) {
   return (
     <div>
       <h2>Contributions for {username}</h2>
-      <div dangerouslySetInnerHTML={{ __html: contributions || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: contributions || "" }} />
     </div>
   );
 }

@@ -1,3 +1,3 @@
 export { Button } from './components/Button'
-export { Input } from './components/Input'
-export { GetUserData } from './components/GetUserData'
+export { GitHubUserData } from './components/GitHubUserData'
+export { GetGitHubData } from './components/GetGitHubData'
