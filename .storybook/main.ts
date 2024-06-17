@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import { createProxyMiddleware } from "http-proxy-middleware";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -20,6 +19,11 @@ const config: StorybookConfig = {
         target: "https://github.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/leetcode": {
+        target: "https://leetcode.com/graphql/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/leetcode/, ""),
       },
     };
     return config;

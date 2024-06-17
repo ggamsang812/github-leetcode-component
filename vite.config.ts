@@ -16,6 +16,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/leetcode": {
+        target: "https://leetcode.com/graphql/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/leetcode/, ""),
+      },
     },
   },
   build: {
