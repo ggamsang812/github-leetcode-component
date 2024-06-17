@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Button, GitHubUserData, GetGitHubData, GetLeetCodeData } from "../";
+import { GitHubUserData, GetGitHubData, GetLeetCodeData } from "../";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,7 +37,7 @@ function App() {
           onChange={(e) => setInputCustomCountValue(e.target.value)}
         />
         <br />
-        <Button onClick={handleClickCustomCount}>count is {count}</Button>
+        <button onClick={handleClickCustomCount}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
