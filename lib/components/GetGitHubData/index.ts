@@ -9,7 +9,9 @@ interface Contribution {
 }
 
 export function GetGitHubData({ username, date }: GetGitHubDataProps) {
-  const [contributions, setContributions] = useState<Contribution[] | null>(null);
+  const [contributions, setContributions] = useState<Contribution[] | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,9 +19,15 @@ export function GetGitHubData({ username, date }: GetGitHubDataProps) {
     const loadContributions = async () => {
       try {
         const html = await fetchGitHubData(username, date);
-        // console.log(html)
         const parsedData = parseContributions(html);
-        // console.log(parsedData)
+
+        // sort the contribution data by dates
+        parsedData.sort((a: Contribution, b: Contribution) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateA.getTime() - dateB.getTime();
+        });
+
         setContributions(parsedData);
       } catch (error) {
         setError((error as Error).message);
@@ -32,18 +40,12 @@ export function GetGitHubData({ username, date }: GetGitHubDataProps) {
   }, [username]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return "Loading...";
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return error;
   }
 
-  return (
-    <div>
-      <h2>Contributions for {username}</h2>
-      <div>{contributions?.length}</div>
-      <pre>{JSON.stringify(contributions, null, 2)}</pre>
-    </div>
-  );
+  return JSON.stringify(contributions, null, 2);
 }
