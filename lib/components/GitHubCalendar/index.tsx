@@ -18,10 +18,19 @@ export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
     }
   }, [data]);
 
+  let startDateHere: Date = new Date();
+
+  if (year == undefined || null) {
+    const currentDate = new Date();
+    startDateHere.setFullYear(currentDate.getFullYear() - 1);
+  } else {
+    startDateHere = new Date(year.substring(0, 4) + "-01-02");
+  }
+
   return (
     <div>
-      <Calendar />
-      <pre>{JSON.stringify(jsonArray, null, 2)}</pre>
+      <Calendar startDate={startDateHere} />
+      {/* <pre>{JSON.stringify(jsonArray, null, 2)}</pre> */}
       {username}
       {year}
     </div>

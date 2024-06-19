@@ -27,11 +27,24 @@ export const WithoutDate: Story = {
   },
 };
 
-export const WithDate: Story = {
+export const JanSecond2024: Story = {
   args: {
     username: "ggamsang812",
     year: "2024-01-02",
   },
 };
 
+export const JanFirst2024: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "2024-01-01",
+  },
+};
+
+export const Jan23rd2023: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "2023-01-23",
+  },
+};
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
