@@ -3,9 +3,9 @@
 - Step 1: Prepare Contribution Data - Done
   - Fetch or create a list of contributions with dates and counts.
   - Ensure the data covers at least the past year.
-- Step 2: Define the Grid Layout
+- Step 2: Define the Grid Layout - Done
   - The grid should have 7 rows (days of the week) and 53 columns (weeks of the year).
-- Step 3: Calculate Dates
+- Step 3: Calculate Dates - Done
   - Determine the starting date (the first Sunday of the calendar year).
   - For each week in the past year, calculate the dates for each day (Sunday to Saturday).
 - Step 4: Map Data to Grid

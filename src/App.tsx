@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { GitHubUserData, GetGitHubData, GetLeetCodeData } from "../";
+import { GitHubUserData, GetGitHubData, GetLeetCodeData, GitHubCalendar } from "../";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,7 +28,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <GetLeetCodeData username="ggamsang812"/>
+        <GitHubCalendar username="ggamsang812"/>
         {/* <GetGitHubData username="ggamsang812" />
         <GitHubUserData username="ggamsang812" /> */}
         <input

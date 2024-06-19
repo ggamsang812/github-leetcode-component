@@ -41,10 +41,10 @@ export const JanFirst2024: Story = {
   },
 };
 
-export const Jan23rd2023: Story = {
+export const Mar12th2023: Story = {
   args: {
     username: "ggamsang812",
-    year: "2023-01-23",
+    year: "2023-03-12",
   },
 };
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
