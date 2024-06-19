@@ -11,10 +11,10 @@ export default defineConfig({
   plugins: [react(), dts({ include: ["lib"] }), libInjectCss()],
   server: {
     proxy: {
-      "/api": {
+      "/github": {
         target: "https://github.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/github/, ""),
       },
       "/leetcode": {
         target: "https://leetcode.com/graphql/",

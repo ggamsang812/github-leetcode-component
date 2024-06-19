@@ -2,7 +2,7 @@ export const fetchGitHubData = async (
   username: string,
   toDate: string | null = null
 ): Promise<string> => {
-  const baseUrl = `/api/users/${username}/contributions`;
+  const baseUrl = `/github/users/${username}/contributions`;
   const url = toDate ? `${baseUrl}?to=${toDate}` : baseUrl;
 
   try {

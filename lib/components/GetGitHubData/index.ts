@@ -8,17 +8,18 @@ interface Contribution {
   level: string;
 }
 
-export function GetGitHubData({ username, date }: GetGitHubDataProps) {
+export function GetGitHubData({ username, year }: GetGitHubDataProps) {
   const [contributions, setContributions] = useState<Contribution[] | null>(
     null
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  let actualYear: string | undefined = year?.substring(0, 4) + "-01-01";
 
   useEffect(() => {
     const loadContributions = async () => {
       try {
-        const html = await fetchGitHubData(username, date);
+        const html = await fetchGitHubData(username, actualYear);
         const parsedData = parseContributions(html);
 
         // sort the contribution data by dates

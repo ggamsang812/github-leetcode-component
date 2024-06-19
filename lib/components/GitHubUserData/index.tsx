@@ -9,7 +9,7 @@ export function GitHubUserData({ username }: GitHubUserDataProps) {
   useEffect(() => {
     async function fetchContributions() {
       try {
-        const response = await fetch(`/api/users/${username}/contributions`);
+        const response = await fetch(`/github/users/${username}/contributions`);
         const text = await response.text();
         setContributions(text);
       } catch (err) {

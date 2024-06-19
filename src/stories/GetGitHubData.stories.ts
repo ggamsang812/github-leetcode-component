@@ -13,7 +13,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     username: { control: "text" },
-    date: { control: "text" },
+    year: { control: "text" },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof GetGitHubData>;
@@ -30,7 +30,7 @@ export const WithoutDates: Story = {
 export const WithDates: Story = {
   args: {
     username: "ggamsang812",
-    date: "2023-01-01"
+    year: "2023-01-01"
   },
 };
 

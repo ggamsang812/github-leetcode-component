@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { GitHubCalendarProps } from "./GitHubCalendar.types";
 import { GetGitHubData } from "../GetGitHubData";
-import Calendar from "./Calendar";
+import { Calendar } from "./Calendar";
 
-export function GitHubCalendar({ username, date }: GitHubCalendarProps) {
+export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
   const [jsonArray, setJsonArray] = useState(null);
-  const data = GetGitHubData({ username, date });
+  const data = GetGitHubData({ username, year });
 
   useEffect(() => {
     if (data !== "Loading...") {
@@ -20,10 +20,10 @@ export function GitHubCalendar({ username, date }: GitHubCalendarProps) {
 
   return (
     <div>
-      <Calendar/>
+      <Calendar />
       <pre>{JSON.stringify(jsonArray, null, 2)}</pre>
       {username}
-      {date}
+      {year}
     </div>
   );
 }

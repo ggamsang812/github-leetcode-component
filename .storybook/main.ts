@@ -15,10 +15,10 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     config.server = config.server || {};
     config.server.proxy = {
-      "/api": {
+      "/github": {
         target: "https://github.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/github/, ""),
       },
       "/leetcode": {
         target: "https://leetcode.com/graphql/",
