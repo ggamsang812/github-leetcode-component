@@ -4,7 +4,7 @@ import { GetGitHubData } from "../GetGitHubData";
 import { Calendar } from "./Calendar";
 
 export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
-  const [jsonArray, setJsonArray] = useState(null);
+  const [jsonArray, setJsonArray] = useState();
   const data = GetGitHubData({ username, year });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
 
   return (
     <div>
-      <Calendar startDate={startDateHere} />
+      <Calendar startDate={startDateHere} contributions={jsonArray} />
       <pre>{JSON.stringify(jsonArray, null, 2)}</pre>
       {username}
       {year}

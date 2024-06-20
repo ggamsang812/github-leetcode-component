@@ -8,13 +8,13 @@
 - Step 3: Calculate Dates - Done
   - Determine the starting date (the first Sunday of the calendar year).
   - For each week in the past year, calculate the dates for each day (Sunday to Saturday).
-- Step 4: Map Data to Grid
+- Step 4: Map Data to Grid - Done
   - For each date in your contribution data, determine its position in the grid.
   - Create a 2D array or a similar structure to hold the contribution counts for each grid cell.
-- Step 5: Define Color Coding
+- Step 5: Define Color Coding - Done 
   - Choose a set of colors to represent different ranges of contributions (e.g., no contributions, low, medium, high).
   - Create a function that maps a contribution count to a color.
-- Step 6: Render the Calendar
+- Step 6: Render the Calendar - Done
   - Use a front-end framework (React, Angular, etc.) to render the calendar.
   - Each cell in the calendar is a component that takes the contribution count and date as props and displays the appropriate color.
   - Implement tooltips or popups to show the exact number of contributions when hovering over a cell.

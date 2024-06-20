@@ -1,12 +1,16 @@
 import styles from "./styles.module.css";
 
-type CalendarGrid = (Date | null)[][];
+type CalendarGrid = { date: Date | null; level: number }[][];
 
 interface CalendarProps {
   startDate: Date;
+  contributions: { date: string; level: number }[] | undefined;
 }
 
-function makeGrid(startDate: Date) {
+function makeGrid(
+  startDate?: Date | null,
+  contributions?: { date: string; level: number }[]
+) {
   // Default start date to one year before today if not provided
   const today = new Date();
 
@@ -16,7 +20,11 @@ function makeGrid(startDate: Date) {
 
   // Initialize the grid with 7 rows and 53 columns
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
-    Array(53).fill(null)
+    Array(53).fill({ date: null, level: 0 })
+  );
+  // Create a map of contributions by date for quick lookup
+  const contributionMap = new Map(
+    contributions?.map((c) => [stringToDate(c.date).toDateString(), c.level])
   );
 
   let date = new Date(startDate);
@@ -25,7 +33,7 @@ function makeGrid(startDate: Date) {
 
   // To fix the bug when startDate is today, it wouldn't include today in the grid
   if (areDatesEqual(endDate, today)) {
-    date.setDate(date.getDate() - 1)
+    date.setDate(date.getDate() - 1);
     endDate.setDate(endDate.getDate() + 1);
   }
 
@@ -35,10 +43,14 @@ function makeGrid(startDate: Date) {
         // Stop if we reach the end date
         return grid;
       }
-      grid[day][week] = new Date(date);
+      const dateString = date.toDateString();
+      const level = contributionMap.get(dateString) || 0;
+
+      grid[day][week] = { date: new Date(date), level: level };
       date.setDate(date.getDate() + 1);
     }
   }
+
   return grid;
 }
 
@@ -48,10 +60,17 @@ const areDatesEqual = (date1: Date, date2: Date): boolean => {
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate()
   );
-}
+};
 
-export function Calendar({ startDate }: CalendarProps) {
-  const grid = makeGrid(startDate);
+const stringToDate = (initDate: string) => {
+  const date = new Date(initDate);
+  date.setDate(date.getDate() + 1);
+  return date;
+};
+
+export function Calendar({ startDate, contributions }: CalendarProps) {
+  const grid = makeGrid(startDate, contributions);
+  // console.log(grid);
 
   return (
     <div className={styles.calendar}>
@@ -60,10 +79,10 @@ export function Calendar({ startDate }: CalendarProps) {
           {week.map((day, dayIndex) => (
             <div
               key={dayIndex}
-              className={styles.day}
-              title={day?.toLocaleDateString() || ""}
+              className={`${styles.day} ${styles[`level${day.level}`]}`} // Apply level-based styling
+              title={day.date?.toLocaleDateString() || ""}
             >
-              {day ? day.getDate() : ""}
+              {day.date ? day.date.getDate() : ""}
             </div>
           ))}
         </div>
