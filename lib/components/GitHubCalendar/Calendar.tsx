@@ -17,10 +17,9 @@ function makeGrid(
   startDate = startDate
     ? new Date(startDate)
     : new Date(today.setFullYear(today.getFullYear() - 1));
-
   // Initialize the grid with 7 rows and 53 columns
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
-    Array(53).fill({ date: null, level: 0 })
+    Array(54).fill({ date: null, level: 0 })
   );
   // Create a map of contributions by date for quick lookup
   const contributionMap = new Map(
@@ -37,20 +36,28 @@ function makeGrid(
     endDate.setDate(endDate.getDate() + 1);
   }
 
-  for (let week = 0; week < 53; week++) {
-    for (let day = 0; day < 7; day++) {
-      if (date >= endDate) {
-        // Stop if we reach the end date
-        return grid;
-      }
-      const dateString = date.toDateString();
-      const level = contributionMap.get(dateString) || 0;
+  const startDayOfWeek = date.getDay(); // Sunday - Saturday: 0 - 6
 
-      grid[day][week] = { date: new Date(date), level: level };
-      date.setDate(date.getDate() + 1);
+  let week = 0;
+  let day = startDayOfWeek;
+  let count = 0;
+
+  while (date < endDate) {
+    if (day === 7) {
+      day = 0;
+      week++;
     }
+    grid[day][week] = {
+      date: new Date(date),
+      level: contributionMap.get(date.toDateString()) || 0,
+    };
+    date.setDate(date.getDate() + 1);
+    day++;
+    count++;
   }
 
+  gridCleanUp(grid)
+  
   return grid;
 }
 
@@ -68,25 +75,61 @@ const stringToDate = (initDate: string) => {
   return date;
 };
 
+const gridCleanUp = (grid: CalendarGrid) => {
+  const lastColumnIndex = 53;
+  let isLastColumnNull = true;
+  for (let day = 0; day < 7; day++) {
+    if (grid[day][lastColumnIndex].date !== null) {
+      isLastColumnNull = false;
+      break;
+    }
+  }
+
+  if (isLastColumnNull) {
+    for (let day = 0; day < 7; day++) {
+      grid[day].pop(); // Remove the last column
+    }
+  }
+}
+
 export function Calendar({ startDate, contributions }: CalendarProps) {
   const grid = makeGrid(startDate, contributions);
-  // console.log(grid);
+
+  const dayLabels = ["Mon", "Wed", "Fri"];
+  const labelRows = [1, 3, 5]; // 0-based indices for 2nd, 4th, and 6th rows
 
   return (
-    <div className={styles.calendar}>
-      {grid.map((week, weekIndex) => (
-        <div key={weekIndex} className={styles.week}>
-          {week.map((day, dayIndex) => (
-            <div
-              key={dayIndex}
-              className={`${styles.day} ${styles[`level${day.level}`]}`} // Apply level-based styling
-              title={day.date?.toLocaleDateString() || ""}
-            >
-              {day.date ? day.date.getDate() : ""}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div className={styles.calendarContainer}>
+      <div className={styles.dayLabels}>
+        {labelRows.map((rowIndex, i) => (
+          <div
+            key={i}
+            className={styles.dayLabel}
+            style={{ gridRow: rowIndex + 2 }}
+          >
+            {dayLabels[i]}
+          </div>
+        ))}
+      </div>
+      <div className={styles.calendar}>
+        {grid.map((week, weekIndex) => (
+          <div key={weekIndex} className={styles.week}>
+            {week.map((day, dayIndex) => (
+              <div
+                key={dayIndex}
+                className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
+                title={
+                  day.date
+                    ? `Date: ${day.date.toLocaleDateString()}, Contributions: ${day.level}`
+                    : ""
+                }
+              >
+                {day.date ? day.date.getDate() : ""}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
