@@ -1,15 +1,21 @@
 import styles from "./styles.module.css";
 
-type CalendarGrid = { date: Date | null; level: number }[][];
+type CalendarGrid = {
+  date: Date | null;
+  level: number;
+  contribution: string;
+}[][];
 
 interface CalendarProps {
   startDate: Date;
-  contributions: { date: string; level: number }[] | undefined;
+  contributions:
+    | { date: string; level: number; contribution: string }[]
+    | undefined;
 }
 
 function makeGrid(
   startDate?: Date | null,
-  contributions?: { date: string; level: number }[]
+  contributions?: { date: string; level: number; contribution: string }[]
 ) {
   // Default start date to one year before today if not provided
   const today = new Date();
@@ -19,12 +25,22 @@ function makeGrid(
     : new Date(today.setFullYear(today.getFullYear() - 1));
   // Initialize the grid with 7 rows and 53 columns
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
-    Array(54).fill({ date: null, level: 0 })
+    Array(54).fill({ date: null, level: 0, contribution: "" })
   );
+
   // Create a map of contributions by date for quick lookup
-  const contributionMap = new Map(
-    contributions?.map((c) => [stringToDate(c.date).toDateString(), c.level])
-  );
+  const contributionMap = new Map<
+    string,
+    { level: number; contribution: string }
+  >();
+
+  contributions?.forEach((c) => {
+    const dateString = stringToDate(c.date).toDateString();
+    contributionMap.set(dateString, {
+      level: c.level,
+      contribution: c.contribution,
+    });
+  });
 
   let date = new Date(startDate);
   const endDate = new Date(startDate);
@@ -49,15 +65,18 @@ function makeGrid(
     }
     grid[day][week] = {
       date: new Date(date),
-      level: contributionMap.get(date.toDateString()) || 0,
+      level: (contributionMap.get(date.toDateString()) || { level: 0 }).level,
+      contribution: (
+        contributionMap.get(date.toDateString()) || { contribution: "" }
+      ).contribution,
     };
     date.setDate(date.getDate() + 1);
     day++;
     count++;
   }
 
-  gridCleanUp(grid)
-  
+  gridCleanUp(grid);
+
   return grid;
 }
 
@@ -90,7 +109,7 @@ const gridCleanUp = (grid: CalendarGrid) => {
       grid[day].pop(); // Remove the last column
     }
   }
-}
+};
 
 export function Calendar({ startDate, contributions }: CalendarProps) {
   const grid = makeGrid(startDate, contributions);
@@ -120,7 +139,7 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
                 className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
                 title={
                   day.date
-                    ? `Date: ${day.date.toLocaleDateString()}, Contributions: ${day.level}`
+                    ? `${day.contribution}`
                     : ""
                 }
               >
