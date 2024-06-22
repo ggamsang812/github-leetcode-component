@@ -137,11 +137,7 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
               <div
                 key={dayIndex}
                 className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
-                title={
-                  day.date
-                    ? `${day.contribution}`
-                    : ""
-                }
+                title={day.date ? `${day.contribution}` : ""}
               >
                 {day.date ? day.date.getDate() : ""}
               </div>
