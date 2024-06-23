@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
 import { LeetCodeCalendarProps } from "./LeetCodeCalendar.types";
 import { GetLeetCodeData } from "../GetLeetCodeData";
-
-function unixToDate(unixTimestamp: number): string {
-  const date = new Date(unixTimestamp * 1000);
-  const year = date.getUTCFullYear();
-  const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
-  const day = date.getUTCDate().toString().padStart(2, "0");
-  return `${month}/${day}/${year}`;
-}
+import { unixToDate } from "./utils/leetcodeutils";
 
 export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
-  const [jsonArray, setJsonArray] = useState();
+  const [convertedCalendar, setConvertedCalendar] = useState<{
+    [key: string]: number;
+  }>({});
   const data = GetLeetCodeData({ username, year });
 
   useEffect(() => {
@@ -21,8 +16,17 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
         const submissionCalendarStr =
           parsedData?.data?.matchedUser?.userCalendar?.submissionCalendar;
 
-        console.log(submissionCalendarStr);
-        setJsonArray(submissionCalendarStr);
+        const submissionCalendar: { [key: string]: number } = JSON.parse(
+          submissionCalendarStr
+        );
+
+        const convertedCalendar: { [key: string]: number } = {};
+        for (const [timestamp, value] of Object.entries(submissionCalendar)) {
+          const date = unixToDate(Number(timestamp));
+          convertedCalendar[date] = value;
+        }
+
+        setConvertedCalendar(convertedCalendar);
       } catch (error) {
         console.error("Failed to parse data:", error);
       }
@@ -31,8 +35,6 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
 
   let startDateHere: Date = new Date();
 
-  console.log(unixToDate(1709942400))
-
   if (year == undefined || null) {
     const currentDate = new Date();
     startDateHere.setFullYear(currentDate.getFullYear() - 1);
@@ -40,5 +42,5 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
     startDateHere = new Date(year + "-01-02");
   }
 
-  return <div>{jsonArray}</div>;
+  return <div>{JSON.stringify(convertedCalendar, null, 2)}</div>;
 }
