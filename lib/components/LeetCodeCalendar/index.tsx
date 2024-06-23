@@ -10,10 +10,17 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
   >([]);
 
   let startDateHere: Date = new Date();
-  const isLessThanCurrent = Number(year?.substring(0, 4)) <= startDateHere.getFullYear()
-  const isOver2015 = Number(year?.substring(0, 4)) >= 2015
+  const isLessThanCurrent =
+    Number(year?.substring(0, 4)) <= startDateHere.getFullYear();
+  const isOver2015 = Number(year?.substring(0, 4)) >= 2015;
 
-  if (year == undefined || null || year.length < 4 || !isLessThanCurrent || !isOver2015) {
+  if (
+    year == undefined ||
+    null ||
+    year.length < 4 ||
+    !isLessThanCurrent ||
+    !isOver2015
+  ) {
     startDateHere.setFullYear(startDateHere.getFullYear() - 1);
   } else {
     startDateHere = new Date(year.substring(0, 4) + "-01-02");
