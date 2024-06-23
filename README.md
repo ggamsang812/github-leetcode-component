@@ -1,68 +1,104 @@
-## Steps to Create Contribution Calendar:
+# Github-Leetcode-component
 
-- Step 1: Prepare Contribution Data - Done
-  - Fetch or create a list of contributions with dates and counts.
-  - Ensure the data covers at least the past year.
-- Step 2: Define the Grid Layout - Done
-  - The grid should have 7 rows (days of the week) and 53 columns (weeks of the year).
-- Step 3: Calculate Dates - Done
-  - Determine the starting date (the first Sunday of the calendar year).
-  - For each week in the past year, calculate the dates for each day (Sunday to Saturday).
-- Step 4: Map Data to Grid - Done
-  - For each date in your contribution data, determine its position in the grid.
-  - Create a 2D array or a similar structure to hold the contribution counts for each grid cell.
-- Step 5: Define Color Coding - Done 
-  - Choose a set of colors to represent different ranges of contributions (e.g., no contributions, low, medium, high).
-  - Create a function that maps a contribution count to a color.
-- Step 6: Render the Calendar - Done
-  - Use a front-end framework (React, Angular, etc.) to render the calendar.
-  - Each cell in the calendar is a component that takes the contribution count and date as props and displays the appropriate color.
-  - Implement tooltips or popups to show the exact number of contributions when hovering over a cell.
+github-leetcode-component is a react library to:
 
-## Initialized the project from this article:
+1. Generate the GitHub Contribution Calendar 
+2. Generate the LeetCode Submission Calendar 
+3. Get User Data from GitHub
+4. Get User Data from LeetCode 
 
-- https://dev.to/receter/how-to-create-a-react-component-library-using-vites-library-mode-4lma
-- Thank you @[receter](https://github.com/receter)
+## Installation
 
-## To publish package
-
-To publish your package, you just need to run `npm publish`. If you want to release your package to the public, you have to set `private: false` in your `package.json`.
-
-## Useful articles / documentations I read for this project
-
-- Guide on setting up the proxy in vite:
-  - https://vitejs.dev/guide/ssr.html#ssr-externals
-  - https://dev.to/ghacosta/til-setting-up-proxy-server-on-vite-2cng
-- Difference between API vs. Endpoints https://dev.to/msnmongare/understanding-the-difference-between-apis-and-endpoints-402a
-- Data fetching guide for Next.js: https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
-
-## React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+```bash
+npm install github-leetcode-component
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+### GitHubCalendar
+Offers two modes of operation:
+1. Current Year Calendar: When no year is specified, the component will generate the github contribution calendar starting from one year ago up until the current date.
+2. Specific Year Calendar: When a year is provided as an input, the component will generate the github calendar for that entire year.
+
+ ```typescript
+/** 
+ * Generates GitHub Contribution Calendar
+ * @param {string} username - GitHub username 
+ * @param {string} year - Optional param for year of the calendar
+ * @returns {jsx} - 
+ */
+```
+```typescript
+import { GitHubCalendar } from "github-leetcode-component"
+```
+```typescript
+<GitHubCalendar username="ggamsang812" />
+<GitHubCalendar username="ggamsang812" year="2024" />
+```
+
+### LeetCodeCalendar
+Offers two modes of operation:
+1. Current Year Calendar: When no year is specified, the component will generate the leetcode submission calendar starting from one year ago up until the current date.
+2. Specific Year Calendar: When a year is provided as an input, the component will generate the leetcode calendar for that entire year.
+
+ ```typescript
+/** 
+ * Generates LeetCode Submissions Calendar
+ * @param {string} username - LeetCode username 
+ * @param {string} year - Optional param for year of the calendar
+ * @returns {jsx} - 
+ */
+```
+```typescript
+import { LeetCodeCalendar} from "github-leetcode-component"
+```
+```typescript
+<LeetCodeCalendar username="ggamsang812" />
+<LeetCodeCalendar username="ggamsang812" year="2024" />
+```
+
+### GetGitHubData
+Performs an HTTP request to fetch user data, then converts the fetched data into a stringified HTML format and returns it. Offers two modes of operation:
+1. Current Year Data: When no year is specified, the component will generate the stringified HTML of user data starting from one year ago up until the current date.
+2. Specific Year Data: When a year is provided as an input, the component will generate the leetcode calendar for that entire year.
+
+ ```typescript
+/** 
+ * Fetch GitHub user data
+ * @param {string} username - LeetCode username 
+ * @param {string} year - Optional param for specific year data
+ * @returns {string} - stringified fetched data
+ */
+```
+```typescript
+import { GetGitHubData} from "github-leetcode-component"
+```
+```typescript
+<GetGitHubData username="ggamsang812" />
+<GetGitHubData username="ggamsang812" year="2024" />
+```
+
+### GetLeetCodeData
+Performs an HTTP request with GraphQL query to fetch user data, then converts the fetched data into a stringified HTML format and returns it. Offers two modes of operation:
+1. Current Year Data: When no year is specified, the component will generate the stringified HTML of user data starting from one year ago up until the current date.
+2. Specific Year Data: When a year is provided as an input, the component will generate the leetcode calendar for that entire year.
+
+ ```typescript
+/** 
+ * Fetch LeetCode user data
+ * @param {string} username - LeetCode username 
+ * @param {string} year - Optional param for specific year data
+ * @returns {string} - stringified fetched data
+ */
+```
+```typescript
+import { GetLeetCodeData} from "github-leetcode-component"
+```
+```typescript
+<GetLeetCodeData username="ggamsang812" />
+<GetLeetCodeData username="ggamsang812" year="2024" />
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
