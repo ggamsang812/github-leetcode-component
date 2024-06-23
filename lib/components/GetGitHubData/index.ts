@@ -14,7 +14,20 @@ export function GetGitHubData({ username, year }: GetGitHubDataProps) {
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  let actualYear: string | undefined = year?.substring(0, 4) + "-01-01";
+
+  const currentYear = new Date();
+
+  let actualYear: string | undefined;
+  if (
+    year &&
+    year.length >= 4 &&
+    Number(year.substring(0, 4)) <= currentYear.getFullYear() &&
+    Number(year.substring(0, 4)) >= 2005
+  ) {
+    actualYear = year?.substring(0, 4) + "-01-01"
+  } else {
+    actualYear = undefined;
+  }
 
   useEffect(() => {
     const loadContributions = async () => {
