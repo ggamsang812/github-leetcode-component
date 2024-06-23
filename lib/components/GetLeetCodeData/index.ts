@@ -4,6 +4,7 @@ import { fetchUserProfileCalendar } from "./fetchUserProfileCalendar";
 
 export function GetLeetCodeData({ username, year }: GetLeetCodeDataProps) {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -15,22 +16,21 @@ export function GetLeetCodeData({ username, year }: GetLeetCodeDataProps) {
         });
         setData(response);
       } catch (error) {
-        setError("Failed to fetch data");
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
       }
     }
 
     getUserProfileCalendar();
-  }, []);
+  }, [username]);
 
-  return (
-    <div>
-      <h1>User Profile Calendar</h1>
-      {error && <p>{error}</p>}
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+  if (loading) {
+    return "Loading...";
+  }
+
+  if (error) {
+    return error;
+  }
+  return JSON.stringify(data, null, 2);
 }

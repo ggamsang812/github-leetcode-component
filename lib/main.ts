@@ -1,4 +1,5 @@
 export { GitHubUserData } from './components/GitHubUserData'
 export { GetGitHubData } from './components/GetGitHubData'
-export { GetLeetCodeData } from './components/GetLeetCodeData'
 export { GitHubCalendar } from './components/GitHubCalendar'
+export { GetLeetCodeData } from './components/GetLeetCodeData'
+export { LeetCodeCalendar } from './components/LeetCodeCalendar'

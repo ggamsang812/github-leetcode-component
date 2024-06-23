@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { GitHubUserDataProps } from "./GitHubUserData.types";
 
+/**
+ * Gets the GitHub User Data and returns raw html in string value
+ * 
+ * @param username 
+ * @returns raw html in string data type
+ */
 export function GitHubUserData({ username }: GitHubUserDataProps) {
   const [contributions, setContributions] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
