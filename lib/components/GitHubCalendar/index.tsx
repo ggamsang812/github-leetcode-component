@@ -30,9 +30,6 @@ export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
   return (
     <div>
       <Calendar startDate={startDateHere} contributions={jsonArray} />
-      <pre>{JSON.stringify(jsonArray, null, 2)}</pre>
-      {username}
-      {year}
     </div>
   );
 }

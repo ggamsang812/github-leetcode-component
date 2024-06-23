@@ -1,3 +1,8 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .calendarContainer {
   display: flex;
   align-items: stretch; /* Make children stretch to the container height */
@@ -43,28 +48,6 @@
   background-color: #ebedf0;
 }
 
-@media (max-width: 600px) {
-  .day {
-    width: 15px;
-    height: 15px;
-    font-size: 8px;
-  }
-  .dayLabel {
-    font-size: 8px;
-  }
-}
-
-@media (max-width: 400px) {
-  .day {
-    width: 10px;
-    height: 10px;
-    font-size: 6px;
-  }
-  .dayLabel {
-    font-size: 6px;
-  }
-}
-
 .level0 {
   background-color: #ebedf0;
 }
@@ -97,4 +80,64 @@
 .transparent:hover {
   background-color: transparent;
   cursor: default;
+}
+
+.flexContainer {
+  display: flex;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.flexItem {
+  flex: 1;
+  height: 24px; /* Adjust as needed */
+  /*Optional: for visual separation */
+  /* border: 1px solid #ccc; */
+  position: relative;
+}
+
+.label {
+  font-size: 15px;
+}
+
+@media (max-width: 600px) {
+  .day {
+    width: 15px;
+    height: 15px;
+    font-size: 8px;
+  }
+  .dayLabel {
+    font-size: 8px;
+  }
+  .flexItem {
+    flex: 1;
+    height: 18px; /* Adjust as needed */
+    /*Optional: for visual separation */
+    /* border: 1px solid #ccc; */
+    position: relative;
+  }
+  .label {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 400px) {
+  .day {
+    width: 10px;
+    height: 10px;
+    font-size: 6px;
+  }
+  .dayLabel {
+    font-size: 6px;
+  }
+  .flexItem {
+    flex: 1;
+    height: 13px; /* Adjust as needed */
+    /*Optional: for visual separation */
+    /* border: 1px solid #ccc; */
+    position: relative;
+  }
+  .label {
+    font-size: 9px;
+  }
 }

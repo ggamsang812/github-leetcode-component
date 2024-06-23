@@ -1,10 +1,5 @@
+import { monthLabels, CalendarGrid, stringToDate, areDatesEqual, gridCleanUp } from "./utils/utils";
 import styles from "./styles.module.css";
-
-type CalendarGrid = {
-  date: Date | null;
-  level: number;
-  contribution: string;
-}[][];
 
 interface CalendarProps {
   startDate: Date;
@@ -16,7 +11,7 @@ interface CalendarProps {
 function makeGrid(
   startDate?: Date | null,
   contributions?: { date: string; level: number; contribution: string }[]
-) {
+): [CalendarGrid, Array<any>] {
   // Default start date to one year before today if not provided
   const today = new Date();
 
@@ -27,6 +22,7 @@ function makeGrid(
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
     Array(54).fill({ date: null, level: 0, contribution: "" })
   );
+  const monthWeeks = Array(13).fill(null);
 
   // Create a map of contributions by date for quick lookup
   const contributionMap = new Map<
@@ -63,6 +59,9 @@ function makeGrid(
       day = 0;
       week++;
     }
+    const month = date.getMonth();
+    monthWeeks[month] = week - 1;
+
     grid[day][week] = {
       date: new Date(date),
       level: (contributionMap.get(date.toDateString()) || { level: 0 }).level,
@@ -70,6 +69,7 @@ function makeGrid(
         contributionMap.get(date.toDateString()) || { contribution: "" }
       ).contribution,
     };
+
     date.setDate(date.getDate() + 1);
     day++;
     count++;
@@ -77,73 +77,60 @@ function makeGrid(
 
   gridCleanUp(grid);
 
-  return grid;
+  return [grid, monthWeeks];
 }
 
-const areDatesEqual = (date1: Date, date2: Date): boolean => {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
-};
-
-const stringToDate = (initDate: string) => {
-  const date = new Date(initDate);
-  date.setDate(date.getDate() + 1);
-  return date;
-};
-
-const gridCleanUp = (grid: CalendarGrid) => {
-  const lastColumnIndex = 53;
-  let isLastColumnNull = true;
-  for (let day = 0; day < 7; day++) {
-    if (grid[day][lastColumnIndex].date !== null) {
-      isLastColumnNull = false;
-      break;
-    }
-  }
-
-  if (isLastColumnNull) {
-    for (let day = 0; day < 7; day++) {
-      grid[day].pop(); // Remove the last column
-    }
-  }
-};
-
 export function Calendar({ startDate, contributions }: CalendarProps) {
-  const grid = makeGrid(startDate, contributions);
+  const [grid, monthWeeks] = makeGrid(startDate, contributions);
 
   const dayLabels = ["Mon", "Wed", "Fri"];
   const labelRows = [1, 3, 5]; // 0-based indices for 2nd, 4th, and 6th rows
 
   return (
-    <div className={styles.calendarContainer}>
-      <div className={styles.dayLabels}>
-        {labelRows.map((rowIndex, i) => (
-          <div
-            key={i}
-            className={styles.dayLabel}
-            style={{ gridRow: rowIndex + 2 }}
-          >
-            {dayLabels[i]}
+    <div className={styles.pageContainer}>
+      <div className={styles.flexContainer}>
+        {Array.from({ length: 54 }, (_, weekNumber) => (
+          <div className={styles.flexItem} key={weekNumber}>
+            {weekNumber === 1 && startDate.getMonth() != 0 && (
+              <div className={styles.label}>
+                {monthLabels[startDate.getMonth()]}
+              </div>
+            )}
+            {monthWeeks.includes(weekNumber) && (
+              <div className={styles.label}>
+                {monthLabels[monthWeeks.indexOf(weekNumber)]}
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <div className={styles.calendar}>
-        {grid.map((week, weekIndex) => (
-          <div key={weekIndex} className={styles.week}>
-            {week.map((day, dayIndex) => (
-              <div
-                key={dayIndex}
-                className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
-                title={day.date ? `${day.contribution}` : ""}
-              >
-                {day.date ? day.date.getDate() : ""}
-              </div>
-            ))}
-          </div>
-        ))}
+      <div className={styles.calendarContainer}>
+        <div className={styles.dayLabels}>
+          {labelRows.map((rowIndex, i) => (
+            <div
+              key={i}
+              className={styles.dayLabel}
+              style={{ gridRow: rowIndex + 2 }}
+            >
+              {dayLabels[i]}
+            </div>
+          ))}
+        </div>
+        <div className={styles.calendar}>
+          {grid.map((week, weekIndex) => (
+            <div key={weekIndex} className={styles.week}>
+              {week.map((day, dayIndex) => (
+                <div
+                  key={dayIndex}
+                  className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
+                  title={day.date ? `${day.contribution}` : ""}
+                >
+                  {/* {day.date ? day.date.getDate() : ""} */}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

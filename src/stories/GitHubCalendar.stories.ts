@@ -47,4 +47,11 @@ export const Mar12th2023: Story = {
     year: "2023-03-12",
   },
 };
+
+export const Mar12th2022: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "2022-03-12",
+  },
+};
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
