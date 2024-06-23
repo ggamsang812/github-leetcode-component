@@ -2,13 +2,13 @@ import { USER_PROFILE_CALENDAR_QUERY } from "./queries";
 
 interface UserProfileCalendarVariables {
   username: string;
-  year?: number;
+  year?: string;
 }
 
 export async function fetchUserProfileCalendar(
   variables: UserProfileCalendarVariables
 ) {
-  const url = `/leetcode`
+  const url = `/leetcode`;
 
   try {
     const response = await fetch(url, {

@@ -7,12 +7,26 @@ export function GetLeetCodeData({ username, year }: GetLeetCodeDataProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const currentYear = new Date();
+
+  let actualYear: string | undefined;
+  if (
+    year &&
+    year.length >= 4 &&
+    Number(year.substring(0, 4)) <= currentYear.getFullYear() &&
+    Number(year.substring(0, 4)) >= 2015
+  ) {
+    actualYear = year.substring(0, 4);
+  } else {
+    actualYear = undefined;
+  }
+
   useEffect(() => {
     async function getUserProfileCalendar() {
       try {
         const response = await fetchUserProfileCalendar({
           username: username,
-          year: year,
+          year: actualYear,
         });
         setData(response);
       } catch (error) {

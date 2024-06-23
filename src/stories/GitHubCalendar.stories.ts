@@ -30,7 +30,7 @@ export const WithoutDate: Story = {
 export const JanSecond2024: Story = {
   args: {
     username: "ggamsang812",
-    year: "2024-01-02",
+    year: "2024-12121212",
   },
 };
 

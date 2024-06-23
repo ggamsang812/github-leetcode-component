@@ -28,10 +28,45 @@ export const NoYear: Story = {
 };
 
 export const Year2024: Story = {
-    args: {
-      username: "ggamsang812",
-      year: 2024
-    },
-  };
+  args: {
+    username: "ggamsang812",
+    year: "2024asdf",
+  },
+};
+
+export const Year2023: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "2023asdf",
+  },
+};
+
+export const ShortYear: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "135",
+  },
+};
+
+export const RandomYear: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "20asdf",
+  },
+};
+
+export const OverYear: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "2222asdf",
+  },
+};
+
+export const LessYear: Story = {
+  args: {
+    username: "ggamsang812",
+    year: "1235",
+  },
+};
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args

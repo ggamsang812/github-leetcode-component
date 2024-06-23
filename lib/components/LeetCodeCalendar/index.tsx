@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react";
 import { LeetCodeCalendarProps } from "./LeetCodeCalendar.types";
 import { GetLeetCodeData } from "../GetLeetCodeData";
-import { unixToDate } from "./utils/leetcodeutils";
+import { unixToDate, transformCalendarData } from "./utils/leetcodeutils";
+import { Calendar } from "./Calendar";
 
 export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
-  const [convertedCalendar, setConvertedCalendar] = useState<{
-    [key: string]: number;
-  }>({});
+  const [formattedData, setFormattedData] = useState<
+    { date: string; level: number; contribution: string }[]
+  >([]);
+
+  let startDateHere: Date = new Date();
+  const isLessThanCurrent = Number(year?.substring(0, 4)) <= startDateHere.getFullYear()
+  const isOver2015 = Number(year?.substring(0, 4)) >= 2015
+
+  if (year == undefined || null || year.length < 4 || !isLessThanCurrent || !isOver2015) {
+    startDateHere.setFullYear(startDateHere.getFullYear() - 1);
+  } else {
+    startDateHere = new Date(year.substring(0, 4) + "-01-02");
+  }
+
   const data = GetLeetCodeData({ username, year });
 
   useEffect(() => {
@@ -16,31 +28,28 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
         const submissionCalendarStr =
           parsedData?.data?.matchedUser?.userCalendar?.submissionCalendar;
 
-        const submissionCalendar: { [key: string]: number } = JSON.parse(
-          submissionCalendarStr
-        );
+        if (submissionCalendarStr) {
+          const submissionCalendar: { [key: string]: number } = JSON.parse(
+            submissionCalendarStr
+          );
 
-        const convertedCalendar: { [key: string]: number } = {};
-        for (const [timestamp, value] of Object.entries(submissionCalendar)) {
-          const date = unixToDate(Number(timestamp));
-          convertedCalendar[date] = value;
+          const convertedCalendar: { [key: string]: number } = {};
+          for (const [timestamp, value] of Object.entries(submissionCalendar)) {
+            const date = unixToDate(Number(timestamp));
+            convertedCalendar[date] = value;
+          }
+
+          setFormattedData(transformCalendarData(convertedCalendar));
         }
-
-        setConvertedCalendar(convertedCalendar);
       } catch (error) {
         console.error("Failed to parse data:", error);
       }
     }
   }, [data]);
 
-  let startDateHere: Date = new Date();
-
-  if (year == undefined || null) {
-    const currentDate = new Date();
-    startDateHere.setFullYear(currentDate.getFullYear() - 1);
-  } else {
-    startDateHere = new Date(year + "-01-02");
-  }
-
-  return <div>{JSON.stringify(convertedCalendar, null, 2)}</div>;
+  return (
+    <div>
+      <Calendar startDate={startDateHere} contributions={formattedData} />
+    </div>
+  );
 }
