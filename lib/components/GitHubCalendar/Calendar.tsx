@@ -1,4 +1,10 @@
-import { monthLabels, CalendarGrid, stringToDate, areDatesEqual, gridCleanUp } from "./utils/utils";
+import {
+  monthLabels,
+  CalendarGrid,
+  stringToDate,
+  areDatesEqual,
+  gridCleanUp,
+} from "./utils/utils";
 import styles from "./styles.module.css";
 
 interface CalendarProps {

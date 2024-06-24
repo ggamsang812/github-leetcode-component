@@ -55,8 +55,8 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
   }, [data]);
 
   return (
-    <div>
+    <>
       <Calendar startDate={startDateHere} contributions={formattedData} />
-    </div>
+    </>
   );
 }
