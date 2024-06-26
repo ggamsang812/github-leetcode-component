@@ -19,6 +19,24 @@
   - Each cell in the calendar is a component that takes the contribution count and date as props and displays the appropriate color.
   - Implement tooltips or popups to show the exact number of contributions when hovering over a cell.
 
+
+## How fetch data look for leetcode and github
+the data fetched from leetcode and github looks different probably because of the way they store their data.
+
+GitHub:
+  1. GitHub stores all dates even without any contribution. ex) 0 contribution on {date}
+  2. Start date is always Sunday. In other words, first date of the fetched data will be the Sunday of the week of a year from today.
+
+Leetcode:
+  1. does not store anything when there are no submission. 
+  2. start date will be the most lastest date with submission. In other words, first date of the fetched data can be yesterday, if yesterday is the only date in a year when I made a submission.
+
+because of above difference, reusing components from Github calendar for LeetCode calendar with minimum tweeks and additional methods will cause unexpected behavior.
+
+For Github, I'll have to allign the "startdate" so the first date of the fetched data aligns with the "grid"
+
+For LeetCode, once I get the data, I'll need to populate the "Contribution" data set with "{number of submission} submissions on {date}" string value.
+
 ## Initialized the project from this article:
 
 - https://dev.to/receter/how-to-create-a-react-component-library-using-vites-library-mode-4lma

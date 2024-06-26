@@ -127,11 +127,19 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
             <div key={weekIndex} className={styles.week}>
               {week.map((day, dayIndex) => (
                 <div
-                  key={dayIndex}
-                  className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
-                  title={day.date ? `${day.contribution}` : ""}
+                  key={`${weekIndex}-${dayIndex}`}
+                  className={styles.dayContainer}
                 >
-                  {/* {day.date ? day.date.getDate() : ""} */}
+                  <div
+                    className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
+                  >
+                    {/* {day.date ? day.date.getDate() : ""} */}
+                  </div>
+                  {day.date && (
+                    <div className={styles.hiddenContent}>
+                      {day.contribution}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

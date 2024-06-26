@@ -35,20 +35,22 @@ export function getContributionMessage(
   return `${contributions} contributions on ${date}.`;
 }
 
+const newLocal = ([date, contributions]: [string, number]): { date: string; level: number; contribution: string; } => {
+  const formattedDate = convertDateFormat(date);
+  const contributionLevel = getContributionLevel(contributions);
+  const contributionMessage = getContributionMessage(
+    formattedDate,
+    contributions
+  );
+  return {
+    date: formattedDate,
+    level: contributionLevel,
+    contribution: contributionMessage,
+  };
+};
+
 export const transformCalendarData = (submissionCalendar: {
   [key: string]: number;
 }): Contribution[] => {
-  return Object.entries(submissionCalendar).map(([date, contributions]) => {
-    const formattedDate = convertDateFormat(date);
-    const contributionLevel = getContributionLevel(contributions);
-    const contributionMessage = getContributionMessage(
-      formattedDate,
-      contributions
-    );
-    return {
-      date: formattedDate,
-      level: contributionLevel,
-      contribution: contributionMessage,
-    };
-  });
+  return Object.entries(submissionCalendar).map(newLocal);
 };

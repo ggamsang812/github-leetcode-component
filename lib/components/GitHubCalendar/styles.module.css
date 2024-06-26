@@ -18,6 +18,10 @@
   margin-top: 1%;
 }
 
+.dayContainer {
+  position: relative;
+}
+
 .dayLabel {
   display: flex;
   align-items: center;
@@ -46,6 +50,19 @@
   cursor: pointer;
   border-radius: 20%;
   background-color: #ebedf0;
+}
+
+.hiddenContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dayContainer:hover .hiddenContent {
+  display: block;
 }
 
 .level0 {

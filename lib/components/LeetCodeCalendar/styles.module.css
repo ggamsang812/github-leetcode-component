@@ -26,6 +26,23 @@
   flex: 1; /* Distribute height equally */
 }
 
+.dayContainer {
+  position: relative;
+}
+
+.hiddenContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dayContainer:hover .hiddenContent {
+  display: block;
+}
+
 .calendar {
   display: flex;
   flex-direction: column;

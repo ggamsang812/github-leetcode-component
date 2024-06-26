@@ -48,4 +48,32 @@ export const gridCleanUp = (grid: CalendarGrid) => {
       grid[day].pop(); // Remove the last column
     }
   }
+
+  // Added this part to mass around with the first column of the gird
+  // this might be something I need to keep my eye on
+  // deletes empty space in the grid which doesn't have any data in from the front
+  for (let index = 0; index < 7; index++) {
+    if (grid[index][0].contribution === "") {
+      grid[index][0] = {
+        date: null,
+        level: 0,
+        contribution: ''
+      }
+    }
+  }
+
+  const firstColumnIndex = 0;
+  let isFirstColumnNull = true;
+  for (let day = 0; day < 7; day++) {
+    if (grid[day][firstColumnIndex].date !== null) {
+      isFirstColumnNull = false;
+      break;
+    }
+  }
+
+  if (isFirstColumnNull) {
+    for (let day = 0; day < 7; day++) {
+      grid[day].splice(firstColumnIndex, 1) // Remove the last column
+    }
+  }
 };

@@ -9,9 +9,7 @@ import styles from "./styles.module.css";
 
 interface CalendarProps {
   startDate: Date;
-  contributions:
-    | { date: string; level: number; contribution: string }[]
-    | undefined;
+  contributions: { date: string; level: number; contribution: string }[];
 }
 
 function makeGrid(
@@ -55,7 +53,6 @@ function makeGrid(
   }
 
   const startDayOfWeek = date.getDay(); // Sunday - Saturday: 0 - 6
-
   let week = 0;
   let day = startDayOfWeek;
   let count = 0;
@@ -72,7 +69,9 @@ function makeGrid(
       date: new Date(date),
       level: (contributionMap.get(date.toDateString()) || { level: 0 }).level,
       contribution: (
-        contributionMap.get(date.toDateString()) || { contribution: "" }
+        contributionMap.get(date.toDateString()) || {
+          contribution: "",
+        }
       ).contribution,
     };
 
@@ -127,11 +126,17 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
             <div key={weekIndex} className={styles.week}>
               {week.map((day, dayIndex) => (
                 <div
-                  key={dayIndex}
-                  className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
-                  title={day.date ? `${day.contribution}` : ""}
+                  key={`${weekIndex}-${dayIndex}`}
+                  className={styles.dayContainer}
                 >
-                  {/* {day.date ? day.date.getDate() : ""} */}
+                  <div
+                    className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
+                  >
+                    {/* {day.date ? day.date.getDate() : ""} */}
+                  </div>
+                  <div className={styles.hiddenContent}>
+                    {day.date ? `${day.contribution}` : ""}
+                  </div>
                 </div>
               ))}
             </div>
