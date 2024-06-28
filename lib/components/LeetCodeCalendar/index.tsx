@@ -22,6 +22,7 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
     !isOver2015
   ) {
     startDateHere.setFullYear(startDateHere.getFullYear() - 1);
+    startDateHere.setDate(startDateHere.getDate() + 1);
   } else {
     startDateHere = new Date(year.substring(0, 4) + "-01-02");
   }

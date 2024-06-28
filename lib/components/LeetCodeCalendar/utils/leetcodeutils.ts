@@ -1,3 +1,5 @@
+import { monthLabels } from "./utils";
+
 interface Contribution {
   date: string;
   level: number;
@@ -30,12 +32,20 @@ export function getContributionMessage(
   date: string,
   contributions: number
 ): string {
-  if (contributions === 0) return `No contributions on ${date}`;
-  if (contributions === 1) return `1 contribution on ${date}`;
-  return `${contributions} contributions on ${date}`;
+  // `0 submissions on ${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+  const month = monthLabels[Number(date.substring(5, 7)) - 1];
+  const dateNumber = date.substring(8);
+  const checkLeadingZero = parseInt(dateNumber, 10).toString();
+  const yearNumber = date.substring(0, 4);
+
+  return `${contributions} submissions on ${month} ${checkLeadingZero}, ${yearNumber}`;
 }
 
-const newLocal = ([date, contributions]: [string, number]): { date: string; level: number; contribution: string; } => {
+const populateContribution = ([date, contributions]: [string, number]): {
+  date: string;
+  level: number;
+  contribution: string;
+} => {
   const formattedDate = convertDateFormat(date);
   const contributionLevel = getContributionLevel(contributions);
   const contributionMessage = getContributionMessage(
@@ -52,5 +62,5 @@ const newLocal = ([date, contributions]: [string, number]): { date: string; leve
 export const transformCalendarData = (submissionCalendar: {
   [key: string]: number;
 }): Contribution[] => {
-  return Object.entries(submissionCalendar).map(newLocal);
+  return Object.entries(submissionCalendar).map(populateContribution);
 };

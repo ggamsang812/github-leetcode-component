@@ -56,16 +56,17 @@
 .hiddenContent {
   display: none;
   position: absolute;
-  bottom: 100%; /* Position above the element */
-  left: -110px; /* Move 10px to the left */
-  background-color: #000000;
-  padding: 4px 10px; /* 2px top and bottom, 5px left and right */
-  border-radius: 1cap;
-  z-index: 1;
+  bottom: 120%; /* Position above the element */
+  left: -95px; /* Move 10px to the left */
+  background-color: #ffffff;
+  padding: 6px 11px; /* 2px top and bottom, 5px left and right */
+  border-radius: 0.5cap;
+  border: 1px solid #e6e6e6;
   white-space: nowrap; /* Ensure text stays on one line */
   width: auto; /* Adjust width as needed, or set to a specific value */
-  font-size: 15px;
-  color: #ebedf0;
+  font-size: 13px;
+  color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .dayContainer:hover .hiddenContent {
@@ -90,10 +91,6 @@
 
 .level4 {
   background-color: #196127;
-}
-
-.day:hover {
-  background-color: #c6e48b;
 }
 
 .transparent {

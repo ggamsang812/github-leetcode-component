@@ -70,7 +70,7 @@ function makeGrid(
       level: (contributionMap.get(date.toDateString()) || { level: 0 }).level,
       contribution: (
         contributionMap.get(date.toDateString()) || {
-          contribution: "",
+          contribution: `0 submissions on ${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
         }
       ).contribution,
     };
@@ -87,6 +87,7 @@ function makeGrid(
 
 export function Calendar({ startDate, contributions }: CalendarProps) {
   const [grid, monthWeeks] = makeGrid(startDate, contributions);
+  console.log(grid);
 
   const dayLabels = ["Mon", "Wed", "Fri"];
   const labelRows = [1, 3, 5]; // 0-based indices for 2nd, 4th, and 6th rows
