@@ -30,9 +30,9 @@ export function getContributionMessage(
   date: string,
   contributions: number
 ): string {
-  if (contributions === 0) return `No contributions on ${date}.`;
-  if (contributions === 1) return `1 contribution on ${date}.`;
-  return `${contributions} contributions on ${date}.`;
+  if (contributions === 0) return `No contributions on ${date}`;
+  if (contributions === 1) return `1 contribution on ${date}`;
+  return `${contributions} contributions on ${date}`;
 }
 
 const newLocal = ([date, contributions]: [string, number]): { date: string; level: number; contribution: string; } => {

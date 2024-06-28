@@ -20,6 +20,7 @@
 
 .dayContainer {
   position: relative;
+  display: inline-block;
 }
 
 .dayLabel {
@@ -55,10 +56,16 @@
 .hiddenContent {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  padding: 10px;
+  bottom: 100%; /* Position above the element */
+  left: -110px; /* Move 10px to the left */
+  background-color: #000000;
+  padding: 4px 10px; /* 2px top and bottom, 5px left and right */
+  border-radius: 1cap;
   z-index: 1;
+  white-space: nowrap; /* Ensure text stays on one line */
+  width: auto; /* Adjust width as needed, or set to a specific value */
+  font-size: 15px;
+  color: #ebedf0;
 }
 
 .dayContainer:hover .hiddenContent {

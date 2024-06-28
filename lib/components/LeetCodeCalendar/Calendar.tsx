@@ -134,9 +134,11 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
                   >
                     {/* {day.date ? day.date.getDate() : ""} */}
                   </div>
-                  <div className={styles.hiddenContent}>
-                    {day.date ? `${day.contribution}` : ""}
-                  </div>
+                  {day.date && (
+                    <div className={styles.hiddenContent}>
+                      {day.contribution}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
