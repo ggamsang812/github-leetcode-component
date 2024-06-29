@@ -1,6 +1,13 @@
+.scrollContainer {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  width: 95vw;
+  max-width: 1200px;
+}
+
 .pageContainer {
   display: flex;
   flex-direction: column;
+  width: 1193px;
 }
 
 .calendarContainer {
@@ -53,22 +60,37 @@
   background-color: #ebedf0;
 }
 
-.hiddenContent {
+.hiddenContent,
+.frontHiddenContent,
+.lastHiddenContent {
   display: none;
   position: absolute;
-  bottom: 120%; /* Position above the element */
-  left: -110px; /* Move 10px to the left */
+  bottom: 110%; /* Position above the element */
   background-color: #000000;
-  padding: 4px 10px; /* 2px top and bottom, 5px left and right */
-  border-radius: 1cap;
+  padding: 3px 10px; /* 5px top and bottom, 10px left and right */
+  border-radius: 0.5cap;
   z-index: 1;
   white-space: nowrap; /* Ensure text stays on one line */
   width: auto; /* Adjust width as needed, or set to a specific value */
-  font-size: 15px;
+  font-size: 13px;
   color: #ebedf0;
 }
 
-.dayContainer:hover .hiddenContent {
+.hiddenContent {
+  left: -115px; /* Move 115px to the left */
+}
+
+.frontHiddenContent {
+  left: -25px;
+}
+
+.lastHiddenContent {
+  right: -2px;
+}
+
+.dayContainer:hover .hiddenContent,
+.dayContainer:hover .frontHiddenContent,
+.dayContainer:hover .lastHiddenContent {
   display: block;
 }
 
@@ -105,6 +127,7 @@
 .flexContainer {
   display: flex;
   width: 100%;
+  margin-top: 2px;
   margin-left: 5px;
 }
 
@@ -121,6 +144,10 @@
 }
 
 @media (max-width: 800px) {
+  .pageContainer {
+    width: 923px;
+  }
+
   .day {
     width: 15px;
     height: 15px;
@@ -131,17 +158,38 @@
   }
   .flexItem {
     flex: 1;
-    height: 18px; /* Adjust as needed */
-    /*Optional: for visual separation */
-    /* border: 1px solid #ccc; */
+    height: 18px;
     position: relative;
   }
   .label {
     font-size: 11px;
   }
+
+  .hiddenContent,
+  .frontHiddenContent,
+  .lastHiddenContent {
+    font-size: 11px;
+    padding: 1px 4px; 
+  }
+
+  .hiddenContent {
+    left: -90px; 
+  }
+
+  .frontHiddenContent {
+    left: -20px;
+  }
+
+  .lastHiddenContent {
+    right: -2px;
+  }
 }
 
 @media (max-width: 500px) {
+  .pageContainer {
+    width: 654px;
+  }
+
   .day {
     width: 10px;
     height: 10px;
@@ -152,12 +200,29 @@
   }
   .flexItem {
     flex: 1;
-    height: 13px; /* Adjust as needed */
-    /*Optional: for visual separation */
-    /* border: 1px solid #ccc; */
+    height: 13px;
     position: relative;
   }
   .label {
     font-size: 9px;
+  }
+
+  .hiddenContent,
+  .frontHiddenContent,
+  .lastHiddenContent {
+    font-size: 8px;
+    padding: 1px 4px; 
+  }
+
+  .hiddenContent {
+    left: -70px; 
+  }
+
+  .frontHiddenContent {
+    left: -15px;
+  }
+
+  .lastHiddenContent {
+    right: 1px;
   }
 }

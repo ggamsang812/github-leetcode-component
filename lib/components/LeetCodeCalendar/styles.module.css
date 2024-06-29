@@ -1,6 +1,13 @@
+.scrollContainer {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  width: 95vw;
+  max-width: 1200px;
+}
+
 .pageContainer {
   display: flex;
   flex-direction: column;
+  width: 1193px;
 }
 
 .calendarContainer {
@@ -53,15 +60,17 @@
   background-color: #ebedf0;
 }
 
-.hiddenContent {
+.hiddenContent,
+.frontHiddenContent,
+.lastHiddenContent {
   display: none;
   position: absolute;
   bottom: 120%; /* Position above the element */
-  left: -95px; /* Move 10px to the left */
   background-color: #ffffff;
   padding: 6px 11px; /* 2px top and bottom, 5px left and right */
   border-radius: 0.5cap;
   border: 1px solid #e6e6e6;
+  z-index: 1;
   white-space: nowrap; /* Ensure text stays on one line */
   width: auto; /* Adjust width as needed, or set to a specific value */
   font-size: 13px;
@@ -69,7 +78,21 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
-.dayContainer:hover .hiddenContent {
+.hiddenContent {
+  left: -93px; /* Move 110px to the left */
+}
+
+.frontHiddenContent {
+  left: -26px;
+}
+
+.lastHiddenContent {
+  right: -3px;
+}
+
+.dayContainer:hover .hiddenContent,
+.dayContainer:hover .frontHiddenContent,
+.dayContainer:hover .lastHiddenContent {
   display: block;
 }
 
@@ -107,6 +130,7 @@
   display: flex;
   width: 100%;
   margin-left: 5px;
+  margin-top: 12px;
 }
 
 .flexItem {
@@ -122,6 +146,10 @@
 }
 
 @media (max-width: 800px) {
+  .pageContainer {
+    width: 923px;
+  }
+
   .day {
     width: 15px;
     height: 15px;
@@ -130,19 +158,45 @@
   .dayLabel {
     font-size: 8px;
   }
+
+  .flexContainer {
+    margin-top: 5px;
+  }
+
   .flexItem {
     flex: 1;
-    height: 18px; /* Adjust as needed */
-    /*Optional: for visual separation */
-    /* border: 1px solid #ccc; */
+    height: 18px;
     position: relative;
   }
   .label {
     font-size: 11px;
   }
+
+  .hiddenContent,
+  .frontHiddenContent,
+  .lastHiddenContent {
+    font-size: 11px;
+    padding: 1px 4px;
+  }
+
+  .hiddenContent {
+    left: -90px; /* Move 115px to the left */
+  }
+
+  .frontHiddenContent {
+    left: -21px;
+  }
+
+  .lastHiddenContent {
+    right: -5px;
+  }
 }
 
 @media (max-width: 500px) {
+  .pageContainer {
+    width: 654px;
+  }
+
   .day {
     width: 10px;
     height: 10px;
@@ -151,6 +205,11 @@
   .dayLabel {
     font-size: 6px;
   }
+
+  .flexContainer {
+    margin-top: 3px;
+  }
+
   .flexItem {
     flex: 1;
     height: 13px; /* Adjust as needed */
@@ -160,5 +219,24 @@
   }
   .label {
     font-size: 9px;
+  }
+
+  .hiddenContent,
+  .frontHiddenContent,
+  .lastHiddenContent {
+    font-size: 8px;
+    padding: 0px 4px;
+  }
+
+  .hiddenContent {
+    left: -70px; /* Move 115px to the left */
+  }
+
+  .frontHiddenContent {
+    left: -17px;
+  }
+
+  .lastHiddenContent {
+    right: -3px;
   }
 }
