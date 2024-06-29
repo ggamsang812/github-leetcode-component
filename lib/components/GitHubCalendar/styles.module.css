@@ -65,7 +65,7 @@
 .lastHiddenContent {
   display: none;
   position: absolute;
-  bottom: 110%; /* Position above the element */
+  bottom: 115%; /* Position above the element */
   background-color: #000000;
   padding: 3px 10px; /* 5px top and bottom, 10px left and right */
   border-radius: 0.5cap;
@@ -124,14 +124,14 @@
   cursor: default;
 }
 
-.flexContainer {
+.monthContainer {
   display: flex;
   width: 100%;
-  margin-top: 2px;
+  margin-top: 5px;
   margin-left: 5px;
 }
 
-.flexItem {
+.monthItem {
   flex: 1;
   height: 24px; /* Adjust as needed */
   /*Optional: for visual separation */
@@ -156,7 +156,7 @@
   .dayLabel {
     font-size: 8px;
   }
-  .flexItem {
+  .monthItem {
     flex: 1;
     height: 18px;
     position: relative;
@@ -198,7 +198,7 @@
   .dayLabel {
     font-size: 6px;
   }
-  .flexItem {
+  .monthItem {
     flex: 1;
     height: 13px;
     position: relative;

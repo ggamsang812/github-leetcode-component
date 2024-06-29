@@ -95,9 +95,9 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
   return (
     <div className={styles.scrollContainer}>
       <div className={styles.pageContainer}>
-        <div className={styles.flexContainer}>
+        <div className={styles.monthContainer}>
           {Array.from({ length: 54 }, (_, weekNumber) => (
-            <div className={styles.flexItem} key={weekNumber}>
+            <div className={styles.monthItem} key={weekNumber}>
               {weekNumber === 1 && startDate.getMonth() != 0 && (
                 <div className={styles.label}>
                   {monthLabels[startDate.getMonth()]}

@@ -126,14 +126,14 @@
   cursor: default;
 }
 
-.flexContainer {
+.monthContainer {
   display: flex;
   width: 100%;
   margin-left: 5px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
-.flexItem {
+.monthItem {
   flex: 1;
   height: 24px; /* Adjust as needed */
   /*Optional: for visual separation */
@@ -159,11 +159,11 @@
     font-size: 8px;
   }
 
-  .flexContainer {
+  .monthContainer {
     margin-top: 5px;
   }
 
-  .flexItem {
+  .monthItem {
     flex: 1;
     height: 18px;
     position: relative;
@@ -206,11 +206,11 @@
     font-size: 6px;
   }
 
-  .flexContainer {
+  .monthContainer {
     margin-top: 3px;
   }
 
-  .flexItem {
+  .monthItem {
     flex: 1;
     height: 13px; /* Adjust as needed */
     /*Optional: for visual separation */
