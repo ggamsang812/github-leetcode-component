@@ -1,13 +1,13 @@
 .scrollContainer {
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 95vw;
-  max-width: 1223px;
+  max-width: 1200px;
 }
 
 .pageContainer {
   display: flex;
   flex-direction: column;
-  width: 1218px;
+  width: 1193px;
 }
 
 .calendarContainer {
@@ -65,29 +65,27 @@
 .lastHiddenContent {
   display: none;
   position: absolute;
-  bottom: 120%; /* Position above the element */
-  background-color: #ffffff;
-  padding: 6px 11px; /* 2px top and bottom, 5px left and right */
+  bottom: 115%; /* Position above the element */
+  background-color: #000000;
+  padding: 3px 10px; /* 5px top and bottom, 10px left and right */
   border-radius: 0.5cap;
-  border: 1px solid #e6e6e6;
   z-index: 1;
   white-space: nowrap; /* Ensure text stays on one line */
   width: auto; /* Adjust width as needed, or set to a specific value */
   font-size: 13px;
-  color: #000000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  color: #ebedf0;
 }
 
 .hiddenContent {
-  left: -93px; /* Move 110px to the left */
+  left: -115px; /* Move 115px to the left */
 }
 
 .frontHiddenContent {
-  left: -26px;
+  left: -25px;
 }
 
 .lastHiddenContent {
-  right: -3px;
+  right: -2px;
 }
 
 .dayContainer:hover .hiddenContent,
@@ -129,8 +127,8 @@
 .monthContainer {
   display: flex;
   width: 100%;
+  margin-top: 5px;
   margin-left: 5px;
-  margin-top: 14px;
 }
 
 .monthItem {
@@ -158,11 +156,6 @@
   .dayLabel {
     font-size: 8px;
   }
-
-  .monthContainer {
-    margin-top: 5px;
-  }
-
   .monthItem {
     flex: 1;
     height: 18px;
@@ -176,19 +169,19 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 11px;
-    padding: 1px 4px;
+    padding: 1px 4px; 
   }
 
   .hiddenContent {
-    left: -90px; /* Move 115px to the left */
+    left: -90px; 
   }
 
   .frontHiddenContent {
-    left: -21px;
+    left: -20px;
   }
 
   .lastHiddenContent {
-    right: -5px;
+    right: -2px;
   }
 }
 
@@ -205,16 +198,9 @@
   .dayLabel {
     font-size: 6px;
   }
-
-  .monthContainer {
-    margin-top: 3px;
-  }
-
   .monthItem {
     flex: 1;
-    height: 13px; /* Adjust as needed */
-    /*Optional: for visual separation */
-    /* border: 1px solid #ccc; */
+    height: 13px;
     position: relative;
   }
   .label {
@@ -225,18 +211,18 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 8px;
-    padding: 0px 4px;
+    padding: 1px 4px; 
   }
 
   .hiddenContent {
-    left: -70px; /* Move 115px to the left */
+    left: -70px; 
   }
 
   .frontHiddenContent {
-    left: -17px;
+    left: -15px;
   }
 
   .lastHiddenContent {
-    right: -3px;
+    right: 1px;
   }
 }

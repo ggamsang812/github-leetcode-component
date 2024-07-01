@@ -53,6 +53,7 @@ function makeGrid(
   }
 
   const startDayOfWeek = date.getDay(); // Sunday - Saturday: 0 - 6
+
   let week = 0;
   let day = startDayOfWeek;
   let count = 0;
