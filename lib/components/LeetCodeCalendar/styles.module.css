@@ -20,7 +20,8 @@
   flex-direction: column;
   margin-right: 5px; /* Space between labels and calendar */
   justify-content: space-between; /* Distribute space equally */
-  flex-grow: 1; /* Allow the element to grow and fill the container */
+  /* Allow the element to grow and fill the container */
+  /* flex-grow: 1;  */
   margin-bottom: 1%;
   margin-top: 1%;
 }
