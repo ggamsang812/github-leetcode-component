@@ -1,7 +1,6 @@
-import { monthLabels, combineGrid } from "./utils/utils";
-import { makeLeetcodeGrid } from "./utils/leetcodeutils";
+import { monthLabels } from "./utils/utils";
 import styles from "./styles.module.css";
-import { makeGithubGrid } from "./utils/githubutils";
+import { makeCombinedGrid } from "./utils/combineGrid";
 
 interface CalendarProps {
   startDate: Date;
@@ -20,26 +19,11 @@ export function Calendar({
   githubContributions,
   leetcodeContributions,
 }: CalendarProps) {
-  const [githubGrid, githubMonthWeeks] = makeGithubGrid(
+  const [combinedGrid, combinedMonthWeeks] = makeCombinedGrid(
     startDate,
-    githubContributions
-  );
-  const [leetcodeGrid, leetcodeMonthWeeks] = makeLeetcodeGrid(
-    startDate,
+    githubContributions,
     leetcodeContributions
   );
-
-  console.log("Github: ");
-  console.log("startDate: ", startDate);
-  console.log(githubGrid);
-  console.log(githubMonthWeeks);
-
-  console.log("LeetCode: ");
-  console.log("startDate: ", startDate);
-  console.log(leetcodeGrid);
-  console.log(leetcodeMonthWeeks);
-
-  combineGrid(githubGrid, leetcodeGrid)
 
   const dayLabels = ["Mon", "Wed", "Fri"];
   const labelRows = [1, 3, 5]; // 0-based indices for 2nd, 4th, and 6th rows
@@ -55,9 +39,9 @@ export function Calendar({
                   {monthLabels[startDate.getMonth()]}
                 </div>
               )}
-              {githubMonthWeeks.includes(weekNumber) && (
+              {combinedMonthWeeks.includes(weekNumber) && (
                 <div className={styles.label}>
-                  {monthLabels[githubMonthWeeks.indexOf(weekNumber)]}
+                  {monthLabels[combinedMonthWeeks.indexOf(weekNumber)]}
                 </div>
               )}
             </div>
@@ -76,7 +60,7 @@ export function Calendar({
             ))}
           </div>
           <div className={styles.calendar}>
-            {githubGrid.map((week, weekIndex) => (
+            {combinedGrid.map((week, weekIndex) => (
               <div key={weekIndex} className={styles.week}>
                 {week.map((day, dayIndex) => {
                   let hiddenContentClass;

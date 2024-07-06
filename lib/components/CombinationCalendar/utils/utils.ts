@@ -73,15 +73,7 @@ export const gridCleanUp = (grid: CalendarGrid) => {
 
   if (isFirstColumnNull) {
     for (let day = 0; day < 7; day++) {
-      grid[day].splice(firstColumnIndex, 1); // Remove the last column
+      grid[day].splice(firstColumnIndex, 1); // Remove the first column if all rows are null
     }
   }
 };
-
-export function combineGrid(githubGrid: CalendarGrid, leetcodeGrid: CalendarGrid) : CalendarGrid {
-  const combinedGrid: CalendarGrid = Array.from({ length: 7 }, () =>
-    Array(54).fill({ date: null, level: 0, contribution: "" })
-  );
-
-  return combinedGrid
-}

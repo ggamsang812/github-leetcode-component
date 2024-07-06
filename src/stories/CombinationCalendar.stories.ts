@@ -29,11 +29,19 @@ export const WithoutDates: Story = {
   },
 };
 
-export const WithDates: Story = {
+export const With2023: Story = {
   args: {
     github_username: "ggamsang812",
     leetcode_username: "ggamsang812",
     year: "2023-01-01",
+  },
+};
+
+export const With2024: Story = {
+  args: {
+    github_username: "ggamsang812",
+    leetcode_username: "ggamsang812",
+    year: "2024-01-01",
   },
 };
 
