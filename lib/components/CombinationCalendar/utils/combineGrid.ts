@@ -6,6 +6,36 @@ import {
   stringToDate,
 } from "./utils";
 
+function getContributionString(
+  githubContribution: string,
+  leetcodeContribution: string,
+  dateString: string
+): string {
+  const datePattern =
+    /(\d+\s+\w+(?:\s+\w+)?)(?:\s+on\s+\w+\s+\d+(?:[a-z]{2})?(?:,\s*\d{4})?)/g;
+
+  if (githubContribution[0] === "N" && leetcodeContribution[0] === "0") {
+    return `No activities on ${dateString}`;
+  }
+  if (leetcodeContribution[0] === "0") {
+    return githubContribution;
+  }
+  if (githubContribution[0] === "N") {
+    return leetcodeContribution;
+  }
+
+  const matches = [];
+  let match;
+  while (
+    (match = datePattern.exec(githubContribution + leetcodeContribution)) !==
+    null
+  ) {
+    matches.push(match[1]);
+  }
+
+  return `${matches[0]} and ${matches[1]} on ${dateString}`;
+}
+
 export function makeCombinedGrid(
   startDate?: Date | null,
   githubContributions?: { date: string; level: number; contribution: string }[],
@@ -89,27 +119,23 @@ export function makeCombinedGrid(
         (leetcodeContributionMap.get(date.toDateString()) || { level: 0 }).level
       );
 
+    let dateString = `${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+
     let githubContribution = (
       githubContributionMap.get(date.toDateString()) || { contribution: "" }
     ).contribution;
 
     let leetcodeContribution = (
       leetcodeContributionMap.get(date.toDateString()) || {
-        contribution: `0 submissions on ${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
+        contribution: `0 submissions on ${dateString}`,
       }
     ).contribution;
 
-    let contributionValue = githubContribution + " " + leetcodeContribution;
-
-    // contributionValue =
-    //   (githubContributionMap.get(date.toDateString()) || { contribution: "" })
-    //     .contribution +
-    //   " " +
-    //   (
-    //     leetcodeContributionMap.get(date.toDateString()) || {
-    //       contribution: `0 submissions on ${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`,
-    //     }
-    //   ).contribution;
+    let contributionValue = getContributionString(
+      githubContribution,
+      leetcodeContribution,
+      dateString
+    );
 
     grid[day][week] = {
       date: new Date(date),

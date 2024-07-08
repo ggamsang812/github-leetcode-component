@@ -169,11 +169,11 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 11px;
-    padding: 1px 4px; 
+    padding: 1px 4px;
   }
 
   .hiddenContent {
-    left: -90px; 
+    left: -90px;
   }
 
   .frontHiddenContent {
@@ -211,11 +211,11 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 8px;
-    padding: 1px 4px; 
+    padding: 1px 4px;
   }
 
   .hiddenContent {
-    left: -70px; 
+    left: -70px;
   }
 
   .frontHiddenContent {
