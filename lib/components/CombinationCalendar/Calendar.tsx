@@ -84,9 +84,9 @@ export function Calendar({
                         {/* {day.date ? day.date.getDate() : ""} */}
                       </div>
                       {day.date && (
-                        <div className={hiddenContentClass}>
+                        <span className={hiddenContentClass}>
                           {day.date ? `${day.contribution}` : ""}
-                        </div>
+                        </span>
                       )}
                     </div>
                   );

@@ -23,7 +23,7 @@ function getContributionString(
     return githubContribution;
   }
   if (githubContribution[0] === "N") {
-    return `${extractSubmission(leetcodeContribution)} on ${dateString}.`;
+    return `${extractSubmission(leetcodeContribution)} on ${dateString}`;
   }
 
   const matches = [];

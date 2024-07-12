@@ -77,7 +77,8 @@
 }
 
 .hiddenContent {
-  left: -115px; /* Move 115px to the left */
+  left: 80%; /* Start with center positioning */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
 }
 
 .frontHiddenContent {
@@ -172,10 +173,6 @@
     padding: 1px 4px;
   }
 
-  .hiddenContent {
-    left: -90px;
-  }
-
   .frontHiddenContent {
     left: -20px;
   }
@@ -212,10 +209,6 @@
   .lastHiddenContent {
     font-size: 8px;
     padding: 1px 4px;
-  }
-
-  .hiddenContent {
-    left: -70px;
   }
 
   .frontHiddenContent {
