@@ -4,7 +4,7 @@ import {
   stringToDate,
   areDatesEqual,
   gridCleanUp,
-} from "./utils/utils";
+} from "../../utils/utils";
 import styles from "./styles.module.css";
 
 interface CalendarProps {
@@ -28,7 +28,7 @@ function makeGrid(
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
     Array(54).fill({ date: null, level: 0, contribution: "" })
   );
-  
+
   const monthWeeks = Array(12).fill(0);
   const monthEndWeeks = Array(12).fill(0);
   const monthStartWeeks = Array(12).fill(0);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { LeetCodeCalendarProps } from "./LeetCodeCalendar.types";
 import { GetLeetCodeData } from "../GetLeetCodeData";
-import { unixToDate, transformCalendarData } from "./utils/leetcodeutils";
+import { unixToDate, transformCalendarData } from "../../utils/leetcodeutils";
 import { Calendar } from "./Calendar";
 
 export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {

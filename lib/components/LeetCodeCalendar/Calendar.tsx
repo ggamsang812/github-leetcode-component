@@ -4,7 +4,7 @@ import {
   stringToDate,
   areDatesEqual,
   gridCleanUp,
-} from "./utils/utils";
+} from "../../utils/utils";
 import styles from "./styles.module.css";
 
 interface CalendarProps {

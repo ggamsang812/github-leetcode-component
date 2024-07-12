@@ -8,7 +8,7 @@ import {
   GetLeetCodeData,
   GitHubCalendar,
   LeetCodeCalendar,
-  CombinationCalendar
+  CombinationCalendar,
 } from "../";
 
 function App() {
@@ -37,7 +37,10 @@ function App() {
       <div className="card">
         <GitHubCalendar username="ggamsang812" />
         <LeetCodeCalendar username="ggamsang812" />
-        <CombinationCalendar github_username="ggamsang812" leetcode_username="ggamsang812"/>
+        <CombinationCalendar
+          github_username="ggamsang812"
+          leetcode_username="ggamsang812"
+        />
         <input
           placeholder="Custom count"
           value={inputCustomCountValue}

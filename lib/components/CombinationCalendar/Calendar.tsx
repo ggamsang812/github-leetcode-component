@@ -1,6 +1,6 @@
-import { monthLabels } from "./utils/utils";
+import { monthLabels } from "../../utils/utils";
 import styles from "./styles.module.css";
-import { makeCombinedGrid } from "./utils/combineGrid";
+import { makeCombinedGrid } from "../../utils/combineGrid";
 
 interface CalendarProps {
   startDate: Date;

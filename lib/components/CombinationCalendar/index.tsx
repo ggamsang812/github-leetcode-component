@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CombinationCalendarProps } from "./CombinationCalendar.types";
 import { GetGitHubData } from "../GetGitHubData";
 import { GetLeetCodeData } from "../GetLeetCodeData";
-import { unixToDate, transformCalendarData } from "./utils/leetcodeutils";
+import { unixToDate, transformCalendarData } from "../../utils/leetcodeutils";
 import { Calendar } from "./Calendar";
 
 export function CombinationCalendar({
