@@ -26,7 +26,10 @@ function makeGrid(
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
     Array(54).fill({ date: null, level: 0, contribution: "" })
   );
-  const monthWeeks = Array(13).fill(null);
+
+  const monthWeeks = Array(12).fill(0);
+  const monthEndWeeks = Array(12).fill(0);
+  const monthStartWeeks = Array(12).fill(0);
 
   // Create a map of contributions by date for quick lookup
   const contributionMap = new Map<
@@ -57,14 +60,20 @@ function makeGrid(
   let week = 0;
   let day = startDayOfWeek;
   let count = 0;
+  let month = date.getMonth();
 
   while (date < endDate) {
     if (day === 7) {
       day = 0;
       week++;
     }
-    const month = date.getMonth();
-    monthWeeks[month] = week - 1;
+
+    if (month != date.getMonth()) {
+      month = date.getMonth();
+      monthEndWeeks[month] = week + 1;
+    } else {
+      monthStartWeeks[month] = week;
+    }
 
     grid[day][week] = {
       date: new Date(date),
@@ -79,6 +88,13 @@ function makeGrid(
     date.setDate(date.getDate() + 1);
     day++;
     count++;
+  }
+
+  for (let index = 0; index < monthEndWeeks.length; index++) {
+    const endweek = monthEndWeeks[index];
+    const startweek = monthStartWeeks[index];
+
+    monthWeeks[index] = Math.round((endweek + startweek) / 2);
   }
 
   gridCleanUp(grid);

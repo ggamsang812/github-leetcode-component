@@ -4,6 +4,8 @@ import {
   gridCleanUp,
   monthLabels,
   stringToDate,
+  addOrdinalSuffix,
+  extractSubmission,
 } from "./utils";
 
 function getContributionString(
@@ -21,7 +23,7 @@ function getContributionString(
     return githubContribution;
   }
   if (githubContribution[0] === "N") {
-    return leetcodeContribution;
+    return `${extractSubmission(leetcodeContribution)} on ${dateString}.`;
   }
 
   const matches = [];
@@ -33,7 +35,7 @@ function getContributionString(
     matches.push(match[1]);
   }
 
-  return `${matches[0]} and ${matches[1]} on ${dateString}`;
+  return `${matches[0]}, ${matches[1]} on ${dateString}`;
 }
 
 export function makeCombinedGrid(
@@ -55,7 +57,10 @@ export function makeCombinedGrid(
   const grid: CalendarGrid = Array.from({ length: 7 }, () =>
     Array(54).fill({ date: null, level: 0, contribution: "" })
   );
-  const monthWeeks = Array(13).fill(null);
+
+  const monthWeeks = Array(12).fill(0);
+  const monthEndWeeks = Array(12).fill(0);
+  const monthStartWeeks = Array(12).fill(0);
 
   // ----------------------------------------------------------------------------------
   // Create a maps of each contributions by date for quick lookup
@@ -102,14 +107,20 @@ export function makeCombinedGrid(
   let week = 0;
   let day = startDayOfWeek;
   let count = 0;
+  let month = date.getMonth();
 
   while (date < endDate) {
     if (day === 7) {
       day = 0;
       week++;
     }
-    const month = date.getMonth();
-    monthWeeks[month] = week - 1;
+
+    if (month != date.getMonth()) {
+      month = date.getMonth();
+      monthEndWeeks[month] = week + 1;
+    } else {
+      monthStartWeeks[month] = week;
+    }
 
     let levelValue =
       Number(
@@ -119,7 +130,7 @@ export function makeCombinedGrid(
         (leetcodeContributionMap.get(date.toDateString()) || { level: 0 }).level
       );
 
-    let dateString = `${monthLabels[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    let dateString = `${monthLabels[date.getMonth()]} ${date.getDate()}${addOrdinalSuffix(date.getDate())}`;
 
     let githubContribution = (
       githubContributionMap.get(date.toDateString()) || { contribution: "" }
@@ -148,7 +159,15 @@ export function makeCombinedGrid(
     count++;
   }
 
+  for (let index = 0; index < monthEndWeeks.length; index++) {
+    const endweek = monthEndWeeks[index];
+    const startweek = monthStartWeeks[index];
+
+    monthWeeks[index] = Math.round((endweek + startweek) / 2);
+  }
+
   gridCleanUp(grid);
 
   return [grid, monthWeeks];
 }
+

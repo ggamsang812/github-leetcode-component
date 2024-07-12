@@ -77,3 +77,29 @@ export const gridCleanUp = (grid: CalendarGrid) => {
     }
   }
 };
+
+export function addOrdinalSuffix(day: number): string {
+  if (day > 3 && day < 21) return "th"; // special case for 11th, 12th, 13th
+  switch (day % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+}
+
+export function extractSubmission(input: string): string {
+  // Regular expression to match the contribution count and text
+  const regex = /^(\d+ submissions?)/;
+  const match = input.match(regex);
+
+  if (!match) {
+    throw new Error("Input submissions string format is incorrect");
+  }
+
+  return match[0];
+}
