@@ -15,6 +15,7 @@ const meta = {
     github_username: { control: "text" },
     leetcode_username: { control: "text" },
     year: { control: "text" },
+    size: { control: "text" },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof CombinationCalendar>;
@@ -29,11 +30,20 @@ export const WithoutDates: Story = {
   },
 };
 
+export const WithoutDatesMedium: Story = {
+  args: {
+    github_username: "ggamsang812",
+    leetcode_username: "ggamsang812",
+    size: "medium",
+  },
+};
+
 export const With2023: Story = {
   args: {
     github_username: "ggamsang812",
     leetcode_username: "ggamsang812",
     year: "2023-01-01",
+    size: "asdfadgasdf"
   },
 };
 
@@ -42,6 +52,7 @@ export const With2024: Story = {
     github_username: "ggamsang812",
     leetcode_username: "ggamsang812",
     year: "2024-01-01",
+    size: "small",
   },
 };
 

@@ -3,7 +3,7 @@ import { GitHubCalendarProps } from "./GitHubCalendar.types";
 import { GetGitHubData } from "../GetGitHubData";
 import { Calendar } from "./Calendar";
 
-export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
+export function GitHubCalendar({ username, year, size }: GitHubCalendarProps) {
   const [jsonArray, setJsonArray] = useState();
   const data = GetGitHubData({ username, year });
 
@@ -37,7 +37,7 @@ export function GitHubCalendar({ username, year }: GitHubCalendarProps) {
 
   return (
     <>
-      <Calendar startDate={startDateHere} contributions={jsonArray} />
+      <Calendar startDate={startDateHere} contributions={jsonArray} size={size} />
     </>
   );
 }

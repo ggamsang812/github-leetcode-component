@@ -20,8 +20,6 @@
   flex-direction: column;
   margin-right: 5px; /* Space between labels and calendar */
   justify-content: space-between; /* Distribute space equally */
-  /* Allow the element to grow and fill the container */
-  /* flex-grow: 1;  */
   margin-bottom: 1%;
   margin-top: 1%;
 }
@@ -80,7 +78,8 @@
 }
 
 .hiddenContent {
-  left: -93px; /* Move 110px to the left */
+  left: 80%; /* Start with center positioning */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
 }
 
 .frontHiddenContent {
@@ -137,13 +136,88 @@
 .monthItem {
   flex: 1;
   height: 24px; /* Adjust as needed */
-  /*Optional: for visual separation */
-  /* border: 1px solid #ccc; */
   position: relative;
 }
 
 .label {
   font-size: 15px;
+}
+
+/* medium size */
+
+.pageContainer.medium {
+  width: 923px;
+}
+
+.day.medium {
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
+}
+.dayLabel.medium {
+  font-size: 8px;
+}
+.monthContainer.medium {
+  margin-top: 5px;
+}
+.monthItem.medium {
+  height: 18px;
+}
+.label.medium {
+  font-size: 11px;
+}
+
+.hiddenContent.medium,
+.frontHiddenContent.medium,
+.lastHiddenContent.medium {
+  font-size: 11px;
+  padding: 1px 4px;
+}
+
+.frontHiddenContent.medium {
+  left: -21px;
+}
+
+.lastHiddenContent.medium {
+  right: -5px;
+}
+
+/* small size */
+.pageContainer.small {
+  width: 654px;
+}
+
+.day.small {
+  width: 10px;
+  height: 10px;
+  font-size: 6px;
+}
+.dayLabel.small {
+  font-size: 6px;
+}
+.monthContainer.small {
+  margin-top: 3px;
+}
+.monthItem.small {
+  height: 13px;
+}
+.label.small {
+  font-size: 9px;
+}
+
+.hiddenContent.small,
+.frontHiddenContent.small,
+.lastHiddenContent.small {
+  font-size: 8px;
+  padding: 0px 4px;
+}
+
+.frontHiddenContent.small {
+  left: -17px;
+}
+
+.lastHiddenContent.small {
+  right: -3px;
 }
 
 @media (max-width: 800px) {
@@ -165,9 +239,7 @@
   }
 
   .monthItem {
-    flex: 1;
     height: 18px;
-    position: relative;
   }
   .label {
     font-size: 11px;
@@ -178,10 +250,6 @@
   .lastHiddenContent {
     font-size: 11px;
     padding: 1px 4px;
-  }
-
-  .hiddenContent {
-    left: -90px; /* Move 115px to the left */
   }
 
   .frontHiddenContent {
@@ -212,11 +280,7 @@
   }
 
   .monthItem {
-    flex: 1;
     height: 13px; /* Adjust as needed */
-    /*Optional: for visual separation */
-    /* border: 1px solid #ccc; */
-    position: relative;
   }
   .label {
     font-size: 9px;
@@ -227,10 +291,6 @@
   .lastHiddenContent {
     font-size: 8px;
     padding: 0px 4px;
-  }
-
-  .hiddenContent {
-    left: -70px; /* Move 115px to the left */
   }
 
   .frontHiddenContent {

@@ -14,6 +14,7 @@ const meta = {
   argTypes: {
     username: { control: "text" },
     year: { control: "text" },
+    size: { control: "text" },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof GitHubCalendar>;
@@ -31,6 +32,7 @@ export const JanSecond2024: Story = {
   args: {
     username: "ggamsang812",
     year: "2024-12121212",
+    size: "medium",
   },
 };
 
@@ -38,6 +40,7 @@ export const JanFirst2024: Story = {
   args: {
     username: "ggamsang812",
     year: "2024-01-01",
+    size: "small",
   },
 };
 
@@ -45,6 +48,7 @@ export const Mar12th2023: Story = {
   args: {
     username: "ggamsang812",
     year: "2023-03-12",
+    size: "asdfadgasdf"
   },
 };
 
@@ -66,6 +70,7 @@ export const Year2023: Story = {
   args: {
     username: "ggamsang812",
     year: "2023asdf",
+    size: "medium",
   },
 };
 

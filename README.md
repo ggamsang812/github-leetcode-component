@@ -2,10 +2,21 @@
 
 github-leetcode-component is a react library to:
 
-1. Generate the GitHub Contribution Calendar
-2. Generate the LeetCode Submission Calendar
-3. Get User Data from GitHub
-4. Get User Data from LeetCode
+1. Generate the calendar that combined GitHub and LeetCode Calendar (Combination Calendar)
+2. Generate the GitHub Contribution Calendar
+3. Generate the LeetCode Submission Calendar
+4. Get User Data from GitHub
+5. Get User Data from LeetCode
+
+Here how GitHub Calendar, Leetcode Calendar, Combination Calendar look in order: 
+![Overall_example](/src/assets/Overall_example.png)
+
+Different sizes as well: 
+Combination Calender (Large - default / wrong input)
+GitHub Calendar (Medium)
+LeetCode Calendar (Small)
+![Overall_example](/src/assets/Overall_size_example.png)
+
 
 ## Installation
 
@@ -186,6 +197,7 @@ Offers two modes of operation:
  * @param {string} github_username - GitHub username
  * @param {string} leetcode_username - LeetCode username
  * @param {string} year - Optional param for year of the calendar
+ * @param {string} size - Optional param for size of the calendar
  * @returns {jsx} -
  */
 ```
@@ -196,6 +208,8 @@ import { CombinationCalendar } from "github-leetcode-component";
 
 ```typescript
 <CombinationCalendar github_username="ggamsang812" leetcode_username="ggamsang812" />
+<CombinationCalendar github_username="ggamsang812" leetcode_username="ggamsang812" size="small"/>
+
 ```
 
 example: 
@@ -213,6 +227,7 @@ Offers two modes of operation:
  * Generates GitHub Contribution Calendar
  * @param {string} username - GitHub username
  * @param {string} year - Optional param for year of the calendar
+ * @param {string} size - Optional param for size of the calendar
  * @returns {jsx} -
  */
 ```
@@ -224,6 +239,7 @@ import { GitHubCalendar } from "github-leetcode-component";
 ```typescript
 <GitHubCalendar username="ggamsang812" />
 <GitHubCalendar username="ggamsang812" year="2024" />
+<GitHubCalendar username="ggamsang812" size="medium" />
 ```
 
 example: 
@@ -241,6 +257,7 @@ Offers two modes of operation:
  * Generates LeetCode Submissions Calendar
  * @param {string} username - LeetCode username
  * @param {string} year - Optional param for year of the calendar
+ * @param {string} size - Optional param for size of the calendar
  * @returns {jsx} -
  */
 ```
@@ -252,6 +269,7 @@ import { LeetCodeCalendar } from "github-leetcode-component";
 ```typescript
 <LeetCodeCalendar username="ggamsang812" />
 <LeetCodeCalendar username="ggamsang812" year="2024" />
+<LeetCodeCalendar username="ggamsang812" size="MeDiUm" />
 ```
 
 example: 

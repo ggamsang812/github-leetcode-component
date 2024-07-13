@@ -4,7 +4,7 @@ import { GetLeetCodeData } from "../GetLeetCodeData";
 import { unixToDate, transformCalendarData } from "../../utils/leetcodeutils";
 import { Calendar } from "./Calendar";
 
-export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
+export function LeetCodeCalendar({ username, year, size }: LeetCodeCalendarProps) {
   const [formattedData, setFormattedData] = useState<
     { date: string; level: number; contribution: string }[]
   >([]);
@@ -57,7 +57,7 @@ export function LeetCodeCalendar({ username, year }: LeetCodeCalendarProps) {
 
   return (
     <>
-      <Calendar startDate={startDateHere} contributions={formattedData} />
+      <Calendar startDate={startDateHere} contributions={formattedData} size={size}/>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import {
   monthLabels,
   CalendarGrid,
@@ -10,7 +11,12 @@ import styles from "./styles.module.css";
 interface CalendarProps {
   startDate: Date;
   contributions: { date: string; level: number; contribution: string }[];
+  size?: string;
 }
+
+const getClassNames = (baseClass: string, size?: string) => {
+  return classNames(styles[baseClass], size && styles[size]);
+};
 
 function makeGrid(
   startDate?: Date | null,
@@ -102,7 +108,8 @@ function makeGrid(
   return [grid, monthWeeks];
 }
 
-export function Calendar({ startDate, contributions }: CalendarProps) {
+export function Calendar({ startDate, contributions, size }: CalendarProps) {
+  // Form the grid
   const [grid, monthWeeks] = makeGrid(startDate, contributions);
 
   const dayLabels = ["Mon", "Wed", "Fri"];
@@ -110,17 +117,17 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
 
   return (
     <div className={styles.scrollContainer}>
-      <div className={styles.pageContainer}>
-        <div className={styles.monthContainer}>
+      <div className={getClassNames("pageContainer", size)}>
+        <div className={getClassNames("monthContainer", size)}>
           {Array.from({ length: 54 }, (_, weekNumber) => (
-            <div className={styles.monthItem} key={weekNumber}>
+            <div className={getClassNames("monthItem", size)} key={weekNumber}>
               {weekNumber === 1 && startDate.getMonth() != 0 && (
-                <div className={styles.label}>
+                <div className={getClassNames("label", size)}>
                   {monthLabels[startDate.getMonth()]}
                 </div>
               )}
               {monthWeeks.includes(weekNumber) && (
-                <div className={styles.label}>
+                <div className={getClassNames("label", size)}>
                   {monthLabels[monthWeeks.indexOf(weekNumber)]}
                 </div>
               )}
@@ -132,7 +139,7 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
             {labelRows.map((rowIndex, i) => (
               <div
                 key={i}
-                className={styles.dayLabel}
+                className={getClassNames("dayLabel", size)}
                 style={{ gridRow: rowIndex + 2 }}
               >
                 {dayLabels[i]}
@@ -146,11 +153,17 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
                   let hiddenContentClass;
 
                   if (dayIndex < 4) {
-                    hiddenContentClass = styles.frontHiddenContent;
+                    hiddenContentClass = getClassNames(
+                      "frontHiddenContent",
+                      size
+                    );
                   } else if (dayIndex >= week.length - 4) {
-                    hiddenContentClass = styles.lastHiddenContent;
+                    hiddenContentClass = getClassNames(
+                      "lastHiddenContent",
+                      size
+                    );
                   } else {
-                    hiddenContentClass = styles.hiddenContent;
+                    hiddenContentClass = getClassNames("hiddenContent", size);
                   }
 
                   return (
@@ -159,7 +172,7 @@ export function Calendar({ startDate, contributions }: CalendarProps) {
                       className={styles.dayContainer}
                     >
                       <div
-                        className={`${styles.day} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
+                        className={`${getClassNames("day", size)} ${day.date ? styles[`level${day.level}`] : styles.transparent}`}
                       >
                         {/* {day.date ? day.date.getDate() : ""} */}
                       </div>

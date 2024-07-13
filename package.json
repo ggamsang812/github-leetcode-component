@@ -1,7 +1,7 @@
 {
   "name": "github-leetcode-component",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
@@ -53,5 +53,8 @@
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-lib-inject-css": "^2.1.1"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
   }
 }

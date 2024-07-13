@@ -14,6 +14,7 @@ const meta = {
   argTypes: {
     username: { control: "text" },
     year: { control: "text" },
+    size: { control: "text" },
   },
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } satisfies Meta<typeof LeetCodeCalendar>;
@@ -27,10 +28,18 @@ export const NoYear: Story = {
   },
 };
 
+export const NoYearSmall: Story = {
+  args: {
+    username: "ggamsang812",
+    size: "small",
+  },
+};
+
 export const Year2024: Story = {
   args: {
     username: "ggamsang812",
     year: "2024asdf",
+    size: "medium",
   },
 };
 
@@ -38,6 +47,7 @@ export const Year2023: Story = {
   args: {
     username: "ggamsang812",
     year: "2023asdf",
+    size: "asdfadgasdf"
   },
 };
 
@@ -45,6 +55,7 @@ export const ShortYear: Story = {
   args: {
     username: "ggamsang812",
     year: "135",
+    size: "small",
   },
 };
 

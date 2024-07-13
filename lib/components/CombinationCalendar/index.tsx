@@ -9,6 +9,7 @@ export function CombinationCalendar({
   github_username,
   leetcode_username,
   year,
+  size,
 }: CombinationCalendarProps) {
   const [githubJsonArray, setGithubJsonArray] = useState();
   const [formattedLeetcodeData, setformattedLeetcodeData] = useState<
@@ -82,6 +83,7 @@ export function CombinationCalendar({
         startDate={startDateHere}
         githubContributions={githubJsonArray}
         leetcodeContributions={formattedLeetcodeData}
+        size={size}
       />
     </>
   );

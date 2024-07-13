@@ -77,7 +77,8 @@
 }
 
 .hiddenContent {
-  left: -115px; /* Move 115px to the left */
+  left: 80%; /* Start with center positioning */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
 }
 
 .frontHiddenContent {
@@ -133,15 +134,85 @@
 
 .monthItem {
   flex: 1;
-  height: 24px; /* Adjust as needed */
-  /*Optional: for visual separation */
-  /* border: 1px solid #ccc; */
+  height: 24px; 
   position: relative;
 }
 
 .label {
   font-size: 15px;
 }
+
+/* medium size */
+
+.pageContainer.medium {
+  width: 923px;
+}
+
+.day.medium {
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
+}
+.dayLabel.medium {
+  font-size: 8px;
+}
+.monthItem.medium {
+  height: 18px;
+}
+.label.medium {
+  font-size: 11px;
+}
+
+.hiddenContent.medium,
+.frontHiddenContent.medium,
+.lastHiddenContent.medium {
+  font-size: 11px;
+  padding: 1px 4px;
+}
+
+.frontHiddenContent.medium {
+  left: -20px;
+}
+
+.lastHiddenContent.medium {
+  right: -2px;
+}
+
+/* small size */
+.pageContainer.small {
+  width: 654px;
+}
+
+.day.small {
+  width: 10px;
+  height: 10px;
+  font-size: 6px;
+}
+.dayLabel.small {
+  font-size: 6px;
+}
+.monthItem.small {
+  height: 13px;
+}
+.label.small {
+  font-size: 9px;
+}
+
+.hiddenContent.small,
+.frontHiddenContent.small,
+.lastHiddenContent.small {
+  font-size: 8px;
+  padding: 1px 4px;
+}
+
+.frontHiddenContent.small {
+  left: -15px;
+}
+
+.lastHiddenContent.small {
+  right: 1px;
+}
+
 
 @media (max-width: 800px) {
   .pageContainer {
@@ -157,9 +228,7 @@
     font-size: 8px;
   }
   .monthItem {
-    flex: 1;
     height: 18px;
-    position: relative;
   }
   .label {
     font-size: 11px;
@@ -170,10 +239,6 @@
   .lastHiddenContent {
     font-size: 11px;
     padding: 1px 4px; 
-  }
-
-  .hiddenContent {
-    left: -90px; 
   }
 
   .frontHiddenContent {
@@ -199,9 +264,7 @@
     font-size: 6px;
   }
   .monthItem {
-    flex: 1;
     height: 13px;
-    position: relative;
   }
   .label {
     font-size: 9px;
@@ -212,10 +275,6 @@
   .lastHiddenContent {
     font-size: 8px;
     padding: 1px 4px; 
-  }
-
-  .hiddenContent {
-    left: -70px; 
   }
 
   .frontHiddenContent {
