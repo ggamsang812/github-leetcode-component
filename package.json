@@ -1,7 +1,8 @@
 {
   "name": "github-leetcode-component",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
+  "description": "Component to generates GitHub and LeetCode calendar. Plus, the combination calendar for both.",
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
