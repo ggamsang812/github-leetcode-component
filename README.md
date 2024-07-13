@@ -199,7 +199,7 @@ import { CombinationCalendar } from "github-leetcode-component";
 ```
 
 example: 
-![CombinationCalendar_example](/assets/CombinationCalendar_example.png)
+![CombinationCalendar_example](/src/assets/CombinationCalendar_example.png)
 
 ### GitHubCalendar
 
@@ -227,7 +227,7 @@ import { GitHubCalendar } from "github-leetcode-component";
 ```
 
 example: 
-![GitHubCalendar_example](/assets/GitHubCalendar_example.png)
+![GitHubCalendar_example](/src/assets/GitHubCalendar_example.png)
 
 ### LeetCodeCalendar
 
@@ -255,7 +255,7 @@ import { LeetCodeCalendar } from "github-leetcode-component";
 ```
 
 example: 
-![LeetCodeCalendar_example](/assets/LeetCodeCalendar_example.png)
+![LeetCodeCalendar_example](/src/assets/LeetCodeCalendar_example.png)
 
 ### GetGitHubData
 
@@ -283,7 +283,7 @@ import { GetGitHubData } from "github-leetcode-component";
 ```
 
 example: 
-![GetGitHubData_example](/assets/GetGitHubData_example.png)
+![GetGitHubData_example](/src/assets/GetGitHubData_example.png)
 
 ### GetLeetCodeData
 
@@ -311,7 +311,7 @@ import { GetLeetCodeData } from "github-leetcode-component";
 ```
 
 example: 
-![GetLeetCodeData_example](/assets/GetLeetCodeData_example.png)
+![GetLeetCodeData_example](/src/assets/GetLeetCodeData_example.png)
 
 ## License
 
