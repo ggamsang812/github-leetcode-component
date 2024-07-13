@@ -173,6 +173,34 @@ export default function Home() {
 
 ## Usage
 
+### CombinationCalendar
+
+Offers two modes of operation:
+
+1. Current Year Calendar: When no year is specified, the component will generate the github contribution calendar starting from one year ago up until the current date.
+2. Specific Year Calendar: When a year is provided as an input, the component will generate the github calendar for that entire year.
+
+```typescript
+/**
+ * Generates GitHub Contribution Calendar
+ * @param {string} github_username - GitHub username
+ * @param {string} leetcode_username - LeetCode username
+ * @param {string} year - Optional param for year of the calendar
+ * @returns {jsx} -
+ */
+```
+
+```typescript
+import { CombinationCalendar } from "github-leetcode-component";
+```
+
+```typescript
+<CombinationCalendar github_username="ggamsang812" leetcode_username="ggamsang812" />
+```
+
+example: 
+![CombinationCalendar_example](/assets/CombinationCalendar_example.png)
+
 ### GitHubCalendar
 
 Offers two modes of operation:
@@ -197,6 +225,9 @@ import { GitHubCalendar } from "github-leetcode-component";
 <GitHubCalendar username="ggamsang812" />
 <GitHubCalendar username="ggamsang812" year="2024" />
 ```
+
+example: 
+![GitHubCalendar_example](/assets/GitHubCalendar_example.png)
 
 ### LeetCodeCalendar
 
@@ -223,6 +254,9 @@ import { LeetCodeCalendar } from "github-leetcode-component";
 <LeetCodeCalendar username="ggamsang812" year="2024" />
 ```
 
+example: 
+![LeetCodeCalendar_example](/assets/LeetCodeCalendar_example.png)
+
 ### GetGitHubData
 
 Performs an HTTP request to fetch user data, then converts the fetched data into a stringified HTML format and returns it. Offers two modes of operation:
@@ -235,7 +269,7 @@ Performs an HTTP request to fetch user data, then converts the fetched data into
  * Fetch GitHub user data
  * @param {string} username - LeetCode username
  * @param {string} year - Optional param for specific year data
- * @returns {string} - stringified fetched data
+ * @returns {string} - stringified fetched GitHub data
  */
 ```
 
@@ -247,6 +281,9 @@ import { GetGitHubData } from "github-leetcode-component";
 <GetGitHubData username="ggamsang812" />
 <GetGitHubData username="ggamsang812" year="2024" />
 ```
+
+example: 
+![GetGitHubData_example](/assets/GetGitHubData_example.png)
 
 ### GetLeetCodeData
 
@@ -260,7 +297,7 @@ Performs an HTTP request with GraphQL query to fetch user data, then converts th
  * Fetch LeetCode user data
  * @param {string} username - LeetCode username
  * @param {string} year - Optional param for specific year data
- * @returns {string} - stringified fetched data
+ * @returns {string} - stringified fetched Leetcode data
  */
 ```
 
@@ -272,6 +309,9 @@ import { GetLeetCodeData } from "github-leetcode-component";
 <GetLeetCodeData username="ggamsang812" />
 <GetLeetCodeData username="ggamsang812" year="2024" />
 ```
+
+example: 
+![GetLeetCodeData_example](/assets/GetLeetCodeData_example.png)
 
 ## License
 
