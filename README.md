@@ -96,7 +96,7 @@ export default App;
 
 ### Next.js:
 
-**_[Project page of my personal blog](https://theyuniverse.vercel.app/project)_**
+**_[Project page of my personal blog](https://theyuniverse.vercel.app/project)_** <br/>
 **_[test next.js app repo](https://github.com/ggamsang812/calendar-test-nextjs)_**
 
 1. Install http-proxy-middleware:
