@@ -1,8 +1,18 @@
 {
   "name": "github-leetcode-component",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component to generates GitHub and LeetCode calendar. Plus, the combination calendar for both.",
+  "author": "Yunseong Lee",
+  "license": "MIT",
+  "homepage": "https://github.com/ggamsang812/github-leetcode-component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ggamsang812/github-leetcode-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ggamsang812/github-leetcode-component/issues"
+  },
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",

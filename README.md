@@ -1,4 +1,6 @@
-# Github-Leetcode-Component
+# github-leetcode-component
+
+[![Blog Example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/blog_example.png)](https://theyuniverse.vercel.app/project)
 
 github-leetcode-component is a react library to:
 
@@ -8,15 +10,27 @@ github-leetcode-component is a react library to:
 4. Get User Data from GitHub
 5. Get User Data from LeetCode
 
-Here how GitHub Calendar, Leetcode Calendar, Combination Calendar look in order: 
-![Overall_example](/src/assets/Overall_example.png)
+Here how GitHub Calendar, Leetcode Calendar, Combination Calendar look in order:
+![Overall_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/Overall_example.png)
 
-Different sizes as well: 
+Different Sizes of Calendar:
 Combination Calender (Large - default / wrong input)
 GitHub Calendar (Medium)
 LeetCode Calendar (Small)
-![Overall_example](/src/assets/Overall_size_example.png)
+![Overall_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/Overall_size_example.png)
 
+Example of applying to :
+
+- My personal blog (Typescript / Next.js / Vercel)
+
+  - [Project page of my personal blog](https://theyuniverse.vercel.app/project)
+
+- Vite app (Typescript / Vite)
+
+  - [vite app to test](https://github.com/ggamsang812/calendar-test-vite)
+
+- Next.js app (Typescript / Vite)
+  - [next.js app to test](https://github.com/ggamsang812/calendar-test-nextjs)
 
 ## Installation
 
@@ -29,13 +43,17 @@ npm install github-leetcode-component
 You will have to set up a proxy. Here are a guide and examples for vite and next.js.
 
 ### Vite:
+
+**_[test vite app repo](https://github.com/ggamsang812/calendar-test-vite)_**
+
 1. Add server proxy field in the vite.config.ts:
 
-Here is an example: 
+Here is an example:
+
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -54,10 +72,11 @@ export default defineConfig({
       },
     },
   },
-})
-
+});
 ```
+
 2. Use it!
+
 ```typescript
 import "./App.css";
 import { GitHubCalendar, LeetCodeCalendar } from "github-leetcode-component";
@@ -76,6 +95,9 @@ export default App;
 ```
 
 ### Next.js:
+
+**_[Project page of my personal blog](https://theyuniverse.vercel.app/project)_**
+**_[test next.js app repo](https://github.com/ggamsang812/calendar-test-nextjs)_**
 
 1. Install http-proxy-middleware:
    - `npm install express http-proxy-middleware`
@@ -149,6 +171,7 @@ app.prepare().then(() => {
 4. Create a client side rendering component:
 
 Here is an example:
+
 ```typescript
 // app/pages/Calendar.tsx
 "use client";
@@ -212,8 +235,8 @@ import { CombinationCalendar } from "github-leetcode-component";
 
 ```
 
-example: 
-![CombinationCalendar_example](/src/assets/CombinationCalendar_example.png)
+example:
+![CombinationCalendar_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/CombinationCalendar_example.png)
 
 ### GitHubCalendar
 
@@ -242,8 +265,8 @@ import { GitHubCalendar } from "github-leetcode-component";
 <GitHubCalendar username="ggamsang812" size="medium" />
 ```
 
-example: 
-![GitHubCalendar_example](/src/assets/GitHubCalendar_example.png)
+example:
+![GitHubCalendar_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/GitHubCalendar_example.png)
 
 ### LeetCodeCalendar
 
@@ -272,8 +295,8 @@ import { LeetCodeCalendar } from "github-leetcode-component";
 <LeetCodeCalendar username="ggamsang812" size="MeDiUm" />
 ```
 
-example: 
-![LeetCodeCalendar_example](/src/assets/LeetCodeCalendar_example.png)
+example:
+![LeetCodeCalendar_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/LeetCodeCalendar_example.png)
 
 ### GetGitHubData
 
@@ -300,8 +323,8 @@ import { GetGitHubData } from "github-leetcode-component";
 <GetGitHubData username="ggamsang812" year="2024" />
 ```
 
-example: 
-![GetGitHubData_example](/src/assets/GetGitHubData_example.png)
+example:
+![GetGitHubData_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/GetGitHubData_example.png)
 
 ### GetLeetCodeData
 
@@ -328,8 +351,8 @@ import { GetLeetCodeData } from "github-leetcode-component";
 <GetLeetCodeData username="ggamsang812" year="2024" />
 ```
 
-example: 
-![GetLeetCodeData_example](/src/assets/GetLeetCodeData_example.png)
+example:
+![GetLeetCodeData_example](https://raw.githubusercontent.com/ggamsang812/github-leetcode-component/master/src/assets/GetLeetCodeData_example.png)
 
 ## License
 

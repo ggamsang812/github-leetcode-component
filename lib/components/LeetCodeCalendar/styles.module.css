@@ -1,7 +1,7 @@
 .scrollContainer {
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 95vw;
-  max-width: 1223px;
+  max-width: 101%;
 }
 
 .pageContainer {
@@ -298,6 +298,43 @@
   }
 
   .lastHiddenContent {
+    right: -3px;
+  }
+
+  .pageContainer.medium {
+    width: 654px;
+  }
+
+  .day.medium {
+    width: 10px;
+    height: 10px;
+    font-size: 6px;
+  }
+  .dayLabel.medium {
+    font-size: 6px;
+  }
+  .monthContainer.medium {
+    margin-top: 3px;
+  }
+  .monthItem.medium {
+    height: 13px;
+  }
+  .label.medium {
+    font-size: 9px;
+  }
+
+  .hiddenContent.medium,
+  .frontHiddenContent.medium,
+  .lastHiddenContent.medium {
+    font-size: 8px;
+    padding: 0px 4px;
+  }
+
+  .frontHiddenContent.medium {
+    left: -17px;
+  }
+
+  .lastHiddenContent.medium {
     right: -3px;
   }
 }

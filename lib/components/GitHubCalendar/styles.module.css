@@ -1,7 +1,7 @@
 .scrollContainer {
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 95vw;
-  max-width: 1200px;
+  max-width: 101%;
 }
 
 .pageContainer {
@@ -20,7 +20,6 @@
   flex-direction: column;
   margin-right: 5px; /* Space between labels and calendar */
   justify-content: space-between; /* Distribute space equally */
-  flex-grow: 1; /* Allow the element to grow and fill the container */
   margin-bottom: 1%;
   margin-top: 1%;
 }
@@ -134,7 +133,7 @@
 
 .monthItem {
   flex: 1;
-  height: 24px; 
+  height: 24px;
   position: relative;
 }
 
@@ -213,7 +212,6 @@
   right: 1px;
 }
 
-
 @media (max-width: 800px) {
   .pageContainer {
     width: 923px;
@@ -238,7 +236,7 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 11px;
-    padding: 1px 4px; 
+    padding: 1px 4px;
   }
 
   .frontHiddenContent {
@@ -274,7 +272,7 @@
   .frontHiddenContent,
   .lastHiddenContent {
     font-size: 8px;
-    padding: 1px 4px; 
+    padding: 1px 4px;
   }
 
   .frontHiddenContent {
@@ -282,6 +280,40 @@
   }
 
   .lastHiddenContent {
+    right: 1px;
+  }
+
+  .pageContainer.medium {
+    width: 654px;
+  }
+
+  .day.medium {
+    width: 10px;
+    height: 10px;
+    font-size: 6px;
+  }
+  .dayLabel.medium {
+    font-size: 6px;
+  }
+  .monthItem.medium {
+    height: 13px;
+  }
+  .label.medium {
+    font-size: 9px;
+  }
+
+  .hiddenContent.medium,
+  .frontHiddenContent.medium,
+  .lastHiddenContent.medium {
+    font-size: 8px;
+    padding: 1px 4px;
+  }
+
+  .frontHiddenContent.medium {
+    left: -15px;
+  }
+
+  .lastHiddenContent.medium {
     right: 1px;
   }
 }
