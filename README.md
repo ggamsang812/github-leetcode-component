@@ -22,11 +22,9 @@ LeetCode Calendar (Small)
 Example of applying to :
 
 - My personal blog (Typescript / Next.js / Vercel)
-
   - [Project page of my personal blog](https://theyuniverse.vercel.app/project)
 
 - Vite app (Typescript / Vite)
-
   - [vite app to test](https://github.com/ggamsang812/calendar-test-vite)
 
 - Next.js app (Typescript / Vite)
@@ -40,11 +38,16 @@ npm install github-leetcode-component
 
 ## Requirements
 
-You will have to set up a proxy. Here are a guide and examples for vite and next.js.
+You will have to set up a server proxy. Here are guide and examples for vite and next.js.
 
 ### Vite:
 
 **_[test vite app repo](https://github.com/ggamsang812/calendar-test-vite)_**
+
+0. install the github-leetcode-component
+```bash
+npm install github-leetcode-component
+```
 
 1. Add server proxy field in the vite.config.ts:
 
@@ -79,13 +82,17 @@ export default defineConfig({
 
 ```typescript
 import "./App.css";
-import { GitHubCalendar, LeetCodeCalendar } from "github-leetcode-component";
+import { CombinationCalendar, LeetCodeCalendar } from "github-leetcode-component";
 
 function App() {
   return (
     <>
-      <GitHubCalendar username="ggamsang812" />
-      <LeetCodeCalendar username="ggamsang812" />
+      <CombinationCalendar
+        github_username="ggamsang812"
+        leetcode_username="ggamsang812"
+        size="small"
+      />
+      <LeetCodeCalendar username="ggamsang812"/>
     </>
   );
 }
@@ -99,76 +106,56 @@ export default App;
 **_[Project page of my personal blog](https://theyuniverse.vercel.app/project)_** <br/>
 **_[test next.js app repo](https://github.com/ggamsang812/calendar-test-nextjs)_**
 
-1. Install http-proxy-middleware:
-   - `npm install express http-proxy-middleware`
-2. Create a Custom Server:
-   - In your Next.js project, you can create a custom server using Express (or any other Node.js server framework). For this example, we'll use Express. - Create a file named `server.js` in the root of your Next.js project. - Configure the proxy using `http-proxy-middleware`.
+0. install the github-leetcode-component
+```bash
+npm install github-leetcode-component
+```
+
+1. Add `rewrites` to the next.config.mjs (or next.config.js - whichever you have on your next.js project)
+  - **_my blog uses next.config.js and the demo app uses next.config.mjs_**
 
 Here is an example:
 
 ```javascript
-// server.js
-const express = require("express");
-const { createProxyMiddleware } = require("http-proxy-middleware");
-const next = require("next");
-
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
-
-app.prepare().then(() => {
-  const server = express();
-
-  // Proxy configuration for /github
-  server.use(
-    "/github",
-    createProxyMiddleware({
-      target: "https://github.com",
-      changeOrigin: true,
-      pathRewrite: {
-        "^/github": "",
+// next.config.mjs
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/github/:path*",
+        destination: "https://github.com/:path*", // Proxy to Backend
       },
-    })
-  );
-
-  // Proxy configuration for /leetcode
-  server.use(
-    "/leetcode",
-    createProxyMiddleware({
-      target: "https://leetcode.com/graphql/",
-      changeOrigin: true,
-      pathRewrite: {
-        "^/leetcode": "",
+      {
+        source: "/leetcode/:path*",
+        destination: "https://leetcode.com/graphql/:path*", // Proxy to Backend
       },
-    })
-  );
+    ];
+  },
+};
 
-  // Handle all other routes with Next.js
-  server.all("*", (req, res) => {
-    return handle(req, res);
-  });
-
-  // Start the server
-  const PORT = process.env.PORT || 3000;
-  server.listen(PORT, (err) => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${PORT}`);
-  });
-});
+export default nextConfig;
 ```
 
-3. Modify `package.json`:
-   - Modify the start script in your package.json to use the custom server:
-
-```json
-"scripts": {
-  "dev": "node server.js",
-  "build": "next build",
-  "start": "NODE_ENV=production node server.js"
-}
+```javascript
+// next.config.js
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/github/:path*",
+        destination: "https://github.com/:path*", // Proxy to Backend
+      },
+      {
+        source: "/leetcode/:path*",
+        destination: "https://leetcode.com/graphql/:path*", // Proxy to Backend
+      },
+    ];
+  },
+};
 ```
 
-4. Create a client side rendering component:
+2. Create a client side rendering component:
 
 Here is an example:
 
@@ -176,20 +163,22 @@ Here is an example:
 // app/pages/Calendar.tsx
 "use client";
 
-import { GitHubCalendar, LeetCodeCalendar } from "github-leetcode-component";
+import { GitHubCalendar, CombinationCalendar } from "github-leetcode-component";
 
 export default function Calendar() {
   return (
     <div>
-      <GitHubCalendar username="ggamsang812" />
-      <LeetCodeCalendar username="ggamsang812" />
+      <GitHubCalendar username="ggamsang812" size="medium" />
+      <CombinationCalendar
+        github_username="ggamsang812"
+        leetcode_username="ggamsang812"
+      />
     </div>
   );
 }
-
 ```
 
-5. Use it!
+3. Use it!
 
 ```typescript
 // app/page.tsx
