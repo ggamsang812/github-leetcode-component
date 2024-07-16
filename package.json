@@ -1,7 +1,7 @@
 {
   "name": "github-leetcode-component",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Component to generates GitHub and LeetCode calendar. Plus, the combination calendar for both.",
   "author": "Yunseong Lee",
   "license": "MIT",
